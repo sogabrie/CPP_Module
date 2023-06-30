@@ -1,20 +1,29 @@
-NAME	= megaphone
+NAME		= phonebook
 	
-CC		= c++
-FLAGS	= -Wall -Wextra -Werror -std=c++98
-RM		= rm -rf
+CC			= c++
+FLAGS		= -Wall -Wextra -Werror -std=c++98
+RM			= rm -rf
 
-.PHONY: all clean re
+FILES		= main contact phonebook
+
+SRC			= $(FILES:=.cpp)
+OBJ			= $(FILES:=.o)
+HEADER		= $(FILES:=.hpp)
+
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): megaphone.cpp Makefile
-	$(CC) $(FLAGS) megaphone.cpp -o $(NAME)
+$(NAME): $(OBJ) $(HEADER)
+	$(CC) $(OBJ) -o $(NAME)
+
+%.o: %.cpp $(HEADER)
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(NAME)
+	$(RM) $(OBJ)
 
-fclean:
-	@$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 
-re: clean all
+re: fclean all
