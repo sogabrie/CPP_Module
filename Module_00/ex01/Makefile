@@ -8,16 +8,17 @@ FILES		= main contact phonebook
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)
-HEADER		= $(FILES:=.hpp)
+#HEADER		= $(FILES:=.hpp)
+HEADER		= $(wildcard *.hpp)
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ) $(HEADER) Makefile
 	$(CC) $(OBJ) -o $(NAME)
 
-%.o: %.cpp $(HEADER)
+%.o: %.cpp $(HEADER) Makefile
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
