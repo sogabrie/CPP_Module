@@ -1,7 +1,8 @@
 NAME		= phonebook
 	
 CC			= c++
-FLAGS		= -Wall -Wextra -Werror -std=c++98
+FLAGS		= 
+#-Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
 FILES		= main contact phonebook
