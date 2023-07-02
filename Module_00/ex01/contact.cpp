@@ -88,10 +88,7 @@ void	Contact::print_stan(std::string ptr)
 	}
 	else
 	{
-		for (size_t i = 0; i < 9; i++)
-		{
-			std::cout << ptr[i];
-		}
+		std::cout << ptr.substr(0,9);
 		std::cout << '.';
 	}
 }

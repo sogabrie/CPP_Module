@@ -21,6 +21,8 @@ int main(int c, char **v)
 	PhoneBook a;
 	while (1)
 	{
+		std::cout<<"Select one of the following commands"<<std::endl;
+        std::cout<<">:ADD    >:SEARCH     >:EXIT"<<std::endl;
 		std::cin >> lin;
 		if (lin == "ADD")
 			a.add();

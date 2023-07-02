@@ -2,14 +2,13 @@ NAME		= phonebook
 	
 CC			= c++
 FLAGS		= 
-#-Wall -Wextra -Werror -std=c++98
+-Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
 FILES		= main contact phonebook
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)
-#HEADER		= $(FILES:=.hpp)
 HEADER		= $(wildcard *.hpp)
 
 .PHONY: all clean fclean re
