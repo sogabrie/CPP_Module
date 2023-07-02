@@ -37,7 +37,7 @@ void	PhoneBook::search()
 			ptr = 0;
 		}
 	}
-	std::cout << this->mas[(int)ptr - 1];
+	this->mas[(int)ptr - 1].full_print();
 }
 void	PhoneBook::add()
 {

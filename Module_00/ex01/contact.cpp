@@ -56,14 +56,13 @@ std::string Contact::get_darkest_secret()
 	return (this->darkest_secret);
 }
 
-std::ostream&	operator<<(std::ostream& os, const Contact& dt)
+void Contact::full_print()
 {
-	os << "First Name     -> " << dt.first_name << std::endl;
-	os << "last_name      -> " << dt.last_name << std::endl;
-	os << "nickname       -> " << dt.nickname << std::endl;
-	os << "phone_number   -> " << dt.phone_number << std::endl;
-	os << "darkest_secret -> " << dt.darkest_secret << std::endl;
-	return os;
+	std::cout << "First Name     -> " << this->first_name << std::endl;
+	std::cout << "last_name      -> " << this->last_name << std::endl;
+	std::cout << "nickname       -> " << this->nickname << std::endl;
+	std::cout << "phone_number   -> " << this->phone_number << std::endl;
+	std::cout << "darkest_secret -> " << this->darkest_secret << std::endl;
 }
 
 void	Contact::print(int indexs)

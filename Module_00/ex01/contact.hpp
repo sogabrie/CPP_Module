@@ -28,7 +28,7 @@ public:
 	std::string get_phone_number();
 	std::string get_darkest_secret();
 
-	friend std::ostream& operator<<(std::ostream& os, const Contact& dt);
+	void full_print();
 	void print(int indexs);
 
 private:
