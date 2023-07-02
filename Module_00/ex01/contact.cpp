@@ -2,7 +2,7 @@
 
 Contact::Contact()
 {
-	// std::cout << "Contact constructor" << std::endl;
+	
 }
 
 Contact::Contact(Contact &ptr)
@@ -12,7 +12,6 @@ Contact::Contact(Contact &ptr)
 	this->last_name = ptr.last_name;
 	this->nickname = ptr.nickname;
 	this->phone_number = ptr.phone_number;
-	// std::cout << "Contact copy" << std::endl;
 }
 
 void Contact::set_first_name(std::string ptr)
@@ -95,5 +94,4 @@ void	Contact::print_stan(std::string ptr)
 
 Contact::~Contact()
 {
-	// std::cout << "Contact distructor" << std::endl;
 }
