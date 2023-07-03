@@ -9,7 +9,7 @@ RM		= rm -rf
 all: $(NAME)
 
 $(NAME): main.cpp Makefile
-	$(CC) $(FLAGS) megaphone.cpp -o $(NAME)
+	$(CC) $(FLAGS) main.cpp -o $(NAME)
 
 clean:
 	$(RM) $(NAME)
