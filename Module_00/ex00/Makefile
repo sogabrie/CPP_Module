@@ -1,18 +1,20 @@
 NAME	= megaphone
 
- CC		= c++
- FLAGS	= -Wall -Wextra -Werror -std=c++98
- RM		= rm -rf
+CC		= c++
+FLAGS	= -Wall -Wextra -Werror -std=c++98
+RM		= rm -rf
 
- .PHONY: all clean re
+.PHONY: all clean fclean re
 
- all: $(NAME)
+all: $(NAME)
 
- $(NAME): megaphone.cpp megaphone.hpp Makefile
- 	$(CC) $(FLAGS) megaphone.cpp -o $(NAME)
+$(NAME): megaphone.cpp Makefile
+	$(CC) $(FLAGS) megaphone.cpp -o $(NAME)
 
- clean:
- 	$(RM) $(NAME)
+clean:
+	$(RM) $(NAME)
 
- fclean:
- 	$(RM) $(NAME)
+fclean:
+	$(RM) $(NAME)
+
+re: fclean all
