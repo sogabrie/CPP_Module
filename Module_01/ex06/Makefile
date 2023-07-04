@@ -1,10 +1,10 @@
-NAME		= replace
+NAME		= harlFilter
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
-FILES		= main Replace myFile
+FILES		= main Harl
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)

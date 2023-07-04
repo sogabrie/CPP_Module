@@ -1,10 +1,11 @@
-NAME		= replace
+NAME		= harl
 	
 CC			= c++
-FLAGS		= -Wall -Wextra -Werror -std=c++98
+FLAGS		= 
+#-Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
-FILES		= main Replace myFile
+FILES		= main Harl
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)

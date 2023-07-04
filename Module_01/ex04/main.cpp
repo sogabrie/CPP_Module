@@ -1,31 +1,14 @@
 #include <iostream>
-#include <fstream>
+#include "Replace.hpp"
 
 int main (int c, char **v) 
 {
-	(void)c;
-	(void)v;
-	std::string a("aaaaa");
-	std::string a2("bbbbbb");
-	std::string b("aaaaasdasdasdfsdfsdfaaaaa");
-	// char a[11];
-	// a[10] = 0;
-	// std::fstream myfile;
-	// myfile.open ("example.txt");
-	// myfile << "Writing this to a file.\n";
-	// while(myfile.read(a,10))
-	// {
-	// 	// myfile.read();
-		
-	// 	std::cout << a;
-	// }
-	// myfile.close();
-	size_t pos = b.find(a);
-	while ( pos != std::string::npos ) {
-		b.erase(pos, a.length());
-		b.insert(pos, a2);
-		pos = b.find(a);
+	if (c != 4)
+	{
+		std::cout << "ERROR argument" << std::endl;
+		return (1);
 	}
-	std::cout << b << std::endl;
+	Replace a(v[1]);
+	a.replace(v[2], v[3]);
 	return 0;
 }
