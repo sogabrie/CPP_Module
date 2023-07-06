@@ -4,7 +4,7 @@ ClapTrap::ClapTrap()
 {
 }
 
-ClapTrap::ClapTrap(std::string name) : Name(name)
+ClapTrap::ClapTrap(std::string name) : Name(name) , Hit_points(10) , Energy_points(10) , Attack_damage(0)
 {
 	std::cout << "Constructor called" << std::endl;
 }
