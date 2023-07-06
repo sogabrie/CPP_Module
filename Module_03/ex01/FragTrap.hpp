@@ -5,10 +5,10 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-class FragTrap : ClapTrap
+class FragTrap
 {
 private:
-
+	ClapTrap a;
 public:
 	FragTrap();
 	FragTrap(std::string name);

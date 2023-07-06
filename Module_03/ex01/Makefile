@@ -4,7 +4,7 @@ CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
-FILES		= main ClapTrap
+FILES		= main ClapTrap FragTrap
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)
