@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Point.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 16:23:15 by sogabrie          #+#    #+#             */
+/*   Updated: 2023/07/06 16:23:16 by sogabrie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Point.hpp"
 
 Point::Point(): x(0), y(0)
@@ -23,12 +35,12 @@ Point &Point::operator=(const Point &other)
     return (*this);
 }
 
-Fixed Point::getX(void) const
+Fixed Point::getX() const
 {
     return (this->x);
 }
 
-Fixed Point::getY(void) const
+Fixed Point::getY() const
 {
     return (this->y);
 }

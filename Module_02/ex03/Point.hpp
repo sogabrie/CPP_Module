@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sogabrie <sogabrie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 16:23:23 by sogabrie          #+#    #+#             */
+/*   Updated: 2023/07/06 16:23:24 by sogabrie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #pragma once
 #ifndef __POINT_HPP__
 #define __POINT_HPP__
@@ -19,8 +31,8 @@ public:
 
     Point&  operator=( const Point &other);
 
-    Fixed getX( void ) const ;
-    Fixed getY( void ) const ;
+    Fixed getX() const ;
+    Fixed getY() const ;
     
 };
 
