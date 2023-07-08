@@ -5,14 +5,14 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
 private:
 
 public:
-	FragTrap();
-	FragTrap(std::string name);
-	~FragTrap();
+	ScavTrap();
+	ScavTrap(std::string name);
+	~ScavTrap();
 
 	void attack(const std::string& target);
 	void highFivesGuys(void);
