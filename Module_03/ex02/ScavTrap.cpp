@@ -2,7 +2,7 @@
 
 ScavTrap::ScavTrap()
 {
-	std::cout << "Constructor called FragTrap" << std::endl;
+	std::cout << "ScavTrap Constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
@@ -10,12 +10,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->Hit_points = 100;
 	this->Energy_points = 50;
 	this->Attack_damage = 20;
-	std::cout << "Constructor called ScavTrap" << std::endl;
+	std::cout << "ScavTrap Constructor called" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "Destructor called ScavTrap" << std::endl;
+	std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
 void ScavTrap::attack(const std::string &target)
@@ -32,7 +32,7 @@ void ScavTrap::attack(const std::string &target)
 	}
 }
 
-void ScavTrap::highFivesGuys(void)
+void ScavTrap::guardGate(void)
 {
-	std::cout << "High Fives Guys" << std::endl;
+	std::cout << "Scav Trap Guard Gate" << std::endl;
 }

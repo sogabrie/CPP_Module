@@ -26,7 +26,7 @@ ClapTrap&   ClapTrap::operator=( const ClapTrap& other)
 	this->Name = other.Name;
 	this->Hit_points = other.Hit_points;
 	this->Energy_points = other.Energy_points;
-	this->Attack_damage = Attack_damage;
+	this->Attack_damage = other.Attack_damage;
 	return *this;
 }
 

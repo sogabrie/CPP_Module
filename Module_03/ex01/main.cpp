@@ -8,6 +8,6 @@ int main()
 	a.beRepaired(2);
 	a.takeDamage(2);
 	a.attack("C");
-	a.highFivesGuys();
+	a.guardGate();
 	return (0);
 }

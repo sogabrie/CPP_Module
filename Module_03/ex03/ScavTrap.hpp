@@ -15,7 +15,7 @@ public:
 	~ScavTrap();
 
 	void attack(const std::string& target);
-	void highFivesGuys(void);
+	void guardGate(void);
 };
 
 

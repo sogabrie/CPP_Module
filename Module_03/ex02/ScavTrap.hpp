@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __FRAGTRAP_HPP__
-#define __FRAGTRAP_HPP__
+#ifndef __ScavTrap_HPP__
+#define __ScavTrap_HPP__
 
 #include <iostream>
 #include "ClapTrap.hpp"
@@ -15,7 +15,7 @@ public:
 	~ScavTrap();
 
 	void attack(const std::string& target);
-	void highFivesGuys(void);
+	void guardGate(void);
 };
 
 

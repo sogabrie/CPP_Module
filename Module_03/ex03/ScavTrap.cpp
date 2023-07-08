@@ -32,7 +32,7 @@ void ScavTrap::attack(const std::string &target)
 	}
 }
 
-void ScavTrap::highFivesGuys(void)
+void ScavTrap::guardGate(void)
 {
-	std::cout << "High Fives Guys" << std::endl;
+	std::cout << "Scav Trap Guard Gate" << std::endl;
 }

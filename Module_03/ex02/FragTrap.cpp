@@ -16,11 +16,5 @@ FragTrap::~FragTrap()
 
 void    FragTrap::highFivesGuys( void ) 
 {
-    if ( this->Energy_points <= 0 ) 
-    {
-        std::cout << "FragTrap" << this->Name << " High Fives Guys." << std::endl;
-        return;
-    }
-   std::cout << "FragTrap" << this->Name << " High Fives Guys." << std::endl;
-    this->Energy_points -= 1;
+    std::cout << "FragTrap " << this->Name << " High Fives Guys." << std::endl;
 }
