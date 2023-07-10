@@ -6,10 +6,15 @@
 
 class Character : public ICharacter
 {
+private:
+	void add_delet(AMateria* m);
 protected:
+
 	std::string _name;
 	AMateria*	_materias[4];
 	size_t		_emty_slot[4];
+	AMateria**	_del_mater;
+	size_t		_size_del_mate;
 
 public:
 	Character(std::string name);
