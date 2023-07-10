@@ -6,8 +6,16 @@
 
 class Character : public ICharacter
 {
+protected:
+	std::string _name;
+	AMateria*	_materias[4];
+	size_t		_emty_slot[4];
+
 public:
-	~Character() {}
+	Character(std::string name);
+	Character(const Character & other);
+	Character & operator=(const Character & other);
+	~Character();
 	std::string const & getName() const ;
 	void equip(AMateria* m);
 	void unequip(int idx);

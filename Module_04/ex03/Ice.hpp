@@ -2,14 +2,16 @@
 #ifndef __ICE_HPP__
 #define __ICE_HPP__
 
-#include <iostream>
+#include "AMateria.hpp"
 
-class Ice
+class Ice : public AMateria
 {
 private:
 public:
 	Ice();
 	~Ice();
+
+	AMateria* clone() const;
 };
 
 #endif
