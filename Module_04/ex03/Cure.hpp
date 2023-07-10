@@ -8,7 +8,7 @@ class Cure : public AMateria
 {
 private:
 public:
-	Cure(std::string const & type);
+	Cure();
 	~Cure();
 
 	AMateria* clone() const;

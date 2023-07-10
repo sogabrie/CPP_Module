@@ -1,6 +1,6 @@
 #include "Ice.hpp"
 
-Ice::Ice(std::string const & type) : AMateria(type) {}
+Ice::Ice() : AMateria("ice") {}
 
 Ice::~Ice() {}
 
