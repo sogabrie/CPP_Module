@@ -6,9 +6,13 @@
 
 class MateriaSource : public IMateriaSource
 {
+private:
+	AMateria*	_materias[4];
+	size_t		_emty_slot[4];
 public:
-	~MateriaSource() {}
-	void learnMateria(AMateria*);
+	MateriaSource();
+	~MateriaSource();
+	void learnMateria(AMateria* m);
 	AMateria* createMateria(std::string const & type);
 };
 

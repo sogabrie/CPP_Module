@@ -8,18 +8,24 @@ void Character::add_delet(AMateria *m)
 		return ;
 	cp = new AMateria*[this-> _size_del_mate + 1];
 	for (size_t i = 0; i < _size_del_mate; i++)
-		cp[i] = m[i];
-	delete[] m;
-	m = cp;
-	m[_size_del_mate] = m;
+		cp[i] = _del_mater[i];
+	delete[] _del_mater;
+	_del_mater = cp;
+	_del_mater[_size_del_mate] = m;
 	++_size_del_mate;
 }
 
-Character::Character(std::string name) : _name(name), _emty_slot(0), _del_mater(0), _size_del_mate(0) {}
+Character::Character(std::string name) : _name(name), _del_mater(0), _size_del_mate(0) 
+{
+	this->_materias = new AMateria*[4];
+	for (size_t i = 0; i < 4; i++)
+		this->_emty_slot[i] = 0;
+}
 
 Character::Character(const Character &other) :  _del_mater(0), _size_del_mate(0)
 {
-	this->_name = other.name;
+	this->_materias = new AMateria*[4];
+	this->_name = other._name;
 	for (size_t i = 0; i < 4; i++)
 	{
 		if (other._emty_slot[i])
@@ -34,7 +40,7 @@ Character &Character::operator=(const Character &other)
 {
 	if (this != &other)
 	{
-		this->_name = other.name;
+		this->_name = other._name;
 		for (size_t i = 0; i < 4; i++)
 		{
 			if (other._emty_slot[i])
@@ -94,4 +100,5 @@ void Character::use(int idx, ICharacter &target)
 		return ;
 	if (this->_emty_slot[idx])
 		this->_materias[idx]->use(target);
+	(void)target;
 }

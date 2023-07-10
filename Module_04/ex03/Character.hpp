@@ -3,7 +3,6 @@
 #define __CHARACTER_HPP__
 
 #include "ICharacter.hpp"
-#include "AMateria.hpp"
 
 class Character : public ICharacter
 {
@@ -12,7 +11,7 @@ private:
 protected:
 
 	std::string _name;
-	AMateria*	_materias[4];
+	AMateria**	_materias;
 	size_t		_emty_slot[4];
 	AMateria**	_del_mater;
 	size_t		_size_del_mate;
