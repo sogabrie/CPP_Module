@@ -2,6 +2,7 @@
 #include "Cure.hpp"
 #include "MateriaSourc.hpp"
 #include "Character.hpp"
+#include <cstdlib>
 
 int main()
 {
@@ -26,6 +27,6 @@ int main()
 	delete me;
 	delete src;
 
-	system("leaks run");
+	system("lenks run");
 	return (0);
 }
