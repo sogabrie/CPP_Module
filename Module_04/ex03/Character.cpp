@@ -55,7 +55,9 @@ Character::~Character()
 		if (this->_emty_slot[i])
 			delete this->_materias[i];
 	}
-	
+	for (size_t i = 0; i < this->_size_del_mate; i++)
+		delete this->_del_mater[i];
+	delete[] this->_del_mater;
 }
 
 std::string const &Character::getName() const { return (this->_name); }

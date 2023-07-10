@@ -8,10 +8,11 @@ class Cure : public AMateria
 {
 private:
 public:
-	Cure();
+	Cure(std::string const & type);
 	~Cure();
 
 	AMateria* clone() const;
+	void use(ICharacter& target);
 };
 
 #endif

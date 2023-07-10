@@ -3,6 +3,7 @@
 #define __CHARACTER_HPP__
 
 #include "ICharacter.hpp"
+#include "AMateria.hpp"
 
 class Character : public ICharacter
 {

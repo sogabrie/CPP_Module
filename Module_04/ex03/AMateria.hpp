@@ -3,13 +3,13 @@
 #define __AMATERIA__HPP__
 
 #include <iostream>
-#include "ICharacter.hpp"
+#include "Character.hpp"
 
 class AMateria
 {
 protected:
 
-	std::string type;
+	std::string _type;
 
 public:
 
