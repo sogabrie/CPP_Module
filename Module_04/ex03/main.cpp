@@ -26,5 +26,6 @@ int main()
 	delete me;
 	delete src;
 
+	system("leaks run");
 	return (0);
 }

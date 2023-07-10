@@ -17,14 +17,14 @@ void Character::add_delet(AMateria *m)
 
 Character::Character(std::string name) : _name(name), _del_mater(0), _size_del_mate(0) 
 {
-	this->_materias = new AMateria*[4];
+	// this->_materias = new AMateria*[4];
 	for (size_t i = 0; i < 4; i++)
 		this->_emty_slot[i] = 0;
 }
 
 Character::Character(const Character &other) :  _del_mater(0), _size_del_mate(0)
 {
-	this->_materias = new AMateria*[4];
+	// this->_materias = new AMateria*[4];
 	this->_name = other._name;
 	for (size_t i = 0; i < 4; i++)
 	{

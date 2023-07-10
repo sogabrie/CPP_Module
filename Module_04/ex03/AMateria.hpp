@@ -4,9 +4,9 @@
 
 #include <iostream>
 #include "ICharacter.hpp"
-
 class Cure;
 class Ice;
+class ICharacter;
 
 class AMateria
 {
@@ -17,6 +17,9 @@ protected:
 public:
 
 	AMateria(std::string const & type);
+	// AMateria();
+	// AMateria(const AMateria & other);
+
 
 	std::string const & getType() const; //Returns the materia type
 
