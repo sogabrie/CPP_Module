@@ -17,8 +17,8 @@ protected:
 public:
 
 	AMateria(std::string const & type);
-	// AMateria();
-	// AMateria(const AMateria & other);
+	AMateria();
+	AMateria(const AMateria & other);
 
 
 	std::string const & getType() const; //Returns the materia type

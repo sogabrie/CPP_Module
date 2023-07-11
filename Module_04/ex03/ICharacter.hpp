@@ -2,10 +2,8 @@
 #ifndef __ICHARACTER_HPP__
 #define __ICHARACTER_HPP__
 
-#include <iostream>
+#include "AMateria.hpp"
 class AMateria;
-class Cure;
-class Ice;
 
 class ICharacter
 {

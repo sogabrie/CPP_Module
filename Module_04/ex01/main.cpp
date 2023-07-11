@@ -54,7 +54,7 @@ int main()
 	delete[] mas;
 	mas = 0;
 
-	system("leaks run");
+	// system("leaks run");
 	
 	return (0);
 }

@@ -3,10 +3,6 @@
 #define __CHARACTER_HPP__
 
 #include "ICharacter.hpp"
-#include "AMateria.hpp"
-class AMateria;
-class Cure;
-class Ice;
 
 class Character : public ICharacter
 {

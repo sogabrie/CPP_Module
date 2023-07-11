@@ -20,13 +20,39 @@ int main()
 
 	ICharacter* bob = new Character("bob");
 
+//////////////////////////////
+
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+
+////////////////////////////////
+
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+////////////////////////////////
+
+	me->use(2, *bob);
+	me->use(3, *bob);
+	me->use(4, *bob);
+	me->use(5, *bob);
+	me->use(-15, *bob);
+	me->use(15, *bob);
+
+///////////////////////////////
 
 	delete bob;
 	delete me;
 	delete src;
 
-	system("lenks run");
+	// system("leaks run");
 	return (0);
 }
