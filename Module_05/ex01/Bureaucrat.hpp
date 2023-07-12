@@ -3,6 +3,7 @@
 #define __BUREAUCRAT_HPP__
 
 #include <iostream>
+class Form;
 
 class Bureaucrat
 {
@@ -19,6 +20,7 @@ public:
 
 	std::string getName() const;
 	int			getGrade() const;
+	bool		signForm(std::string name, int a, int b);
 
 private:
 

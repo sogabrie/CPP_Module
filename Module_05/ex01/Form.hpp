@@ -3,14 +3,15 @@
 #define __FORM_HPP__
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
 class Form
 {
 private:
 	const std::string 	_name;
-	bool				_signed;
 	const int			_grade_to_sign;
 	const int			_grade_to_execute;
+	bool				_signed;
 public:
 
 	Form(std::string name, int grade_to_sign, int grade_to_execute);
@@ -22,6 +23,7 @@ public:
 	bool		getSigned() const;
 	int			getGradeToSign() const;
 	int			getGradeToExecute() const;
+	void		beSigned(Bureaucrat & bur);
 
 private:
 
