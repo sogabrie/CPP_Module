@@ -3,7 +3,7 @@
 #define __BUREAUCRAT_HPP__
 
 #include <iostream>
-class Form;
+#include "AForm.hpp"
 
 class Bureaucrat
 {
