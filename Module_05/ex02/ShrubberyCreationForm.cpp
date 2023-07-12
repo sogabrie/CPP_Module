@@ -1,19 +1,42 @@
-#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(std::string name)
-: AForm("Presidential Pardon Form", name, 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm(std::string name)
+: AForm("Shrubbery Creation Form", name, 145, 137) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) 
-: AForm("Presidential Pardon Form", other.getName(), 145, 137){}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) 
+: AForm("Shrubbery Creation Form", other.getName(), 145, 137){}
 
-PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other) { this->_signed = other.getSigned(); }
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) { (void)other; return (*this); }
 
-PresidentialPardonForm::~PresidentialPardonForm() {}
+ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void PresidentialPardonForm::beSigned(Bureaucrat &bur)
+void ShrubberyCreationForm::beSigned(Bureaucrat &bur)
 {
+	if (!bur.signForm(*this))
+		throw MyException("ShrubberyCreationForm::GradeTooLowException");
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const &executor) const
+bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
+	if (executor.getGrade() <= this->getGradeToExecute())
+	{
+		std::ofstream myfile(this->getName() + "_shrubbery");
+		if (myfile.is_open())
+		{
+			for (size_t i = 0; i < 128; i++)
+			{
+				myfile << i << " = " << (char)i << std::endl;;
+			}
+			
+		}
+		else
+		{
+			myfile.close();
+			throw MyException("ShrubberyCreationForm::ErrorFile");
+		}
+		myfile.close();
+	}
+	else
+		throw MyException("ShrubberyCreationForm::GradeTooLowException");
+	return (true);
 }

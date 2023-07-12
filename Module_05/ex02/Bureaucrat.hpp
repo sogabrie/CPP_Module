@@ -2,7 +2,6 @@
 #ifndef __BUREAUCRAT_HPP__
 #define __BUREAUCRAT_HPP__
 
-#include <iostream>
 #include "AForm.hpp"
 
 class Bureaucrat
@@ -20,7 +19,8 @@ public:
 
 	std::string getName() const;
 	int			getGrade() const;
-	bool		signForm(std::string name, int a);
+	bool		signForm(const AForm& fr);
+	void		executeForm(AForm const & form);
 
 private:
 

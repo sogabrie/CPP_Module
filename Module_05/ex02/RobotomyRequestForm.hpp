@@ -3,6 +3,7 @@
 #define __ROBOTOMYREQUESTFORM_HPP__
 
 #include "Bureaucrat.hpp"
+#include <ctime>
 
 class RobotomyRequestForm : public AForm
 {
@@ -17,7 +18,7 @@ public:
 
 
 	void		beSigned(Bureaucrat & bur);
-	void		execute(Bureaucrat const & executor) const;
+	bool		execute(Bureaucrat const & executor) const;
 };
 
 #endif

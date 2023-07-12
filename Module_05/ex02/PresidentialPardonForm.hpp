@@ -16,7 +16,7 @@ public:
 	~PresidentialPardonForm();
 
 	void		beSigned(Bureaucrat & bur);
-	void		execute(Bureaucrat const & executor) const;
+	bool		execute(Bureaucrat const & executor) const;
 };
 
 #endif

@@ -1,5 +1,6 @@
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main()
 {
@@ -7,8 +8,8 @@ int main()
 	{
 		Bureaucrat a("AAA", 80);
 		std::cout << a;
-		Form b("Forem_1", 50, 50);
-		b.beSigned(a);
+		AForm * b = new ShrubberyCreationForm("Forem_1");
+		b->beSigned(a);
 		std::cout << b;
 	}
 	catch(std::exception& e)

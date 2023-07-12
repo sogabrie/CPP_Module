@@ -27,15 +27,23 @@ std::string Bureaucrat::getName() const { return (this->_name); }
 
 int Bureaucrat::getGrade() const { return (this->_grade); }
 
-bool Bureaucrat::signForm(std::string name, int a)
+bool Bureaucrat::signForm(const AForm& fr)
 {
-	if (this->_grade <= a)
+	if (this->_grade <= fr.getGradeToSign())
 	{
-		std::cout << this->_name << " signed " << name << std::endl;
+		std::cout << this->_name << " signed " << fr.getName() << std::endl;
 		return (true);
 	}
-	std::cout << this->_name << " couldnt sign " << name << " because Grade Too Low Exception\n";
+	std::cout << this->_name << " couldnt sign " << fr.getName() << " because Grade Too Low Exception\n";
 	return (false);
+}
+
+void Bureaucrat::executeForm(AForm const &form)
+{
+	if (form.execute(*this))
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	else
+		std::cout << "ERROR \n" << this->getName() << " NOD executed " << form.getName() << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat &bur)

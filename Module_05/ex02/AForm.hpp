@@ -21,14 +21,14 @@ public:
 	virtual ~AForm();
 
 	std::string 	getName() const;
-	std::string		getTYpe() const;
+	std::string		getType() const;
 	bool			getSigned() const;
 	int				getGradeToSign() const;
 	int				getGradeToExecute() const;
 	virtual void	beSigned(Bureaucrat & bur) = 0;
-	virtual	void	execute(Bureaucrat const & executor) const = 0;
+	virtual	bool	execute(Bureaucrat const & executor) const = 0;
 
-private:
+protected:
 
 	class MyException : public std::exception
 	{

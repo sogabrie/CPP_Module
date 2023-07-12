@@ -26,7 +26,7 @@ std::string AForm::getName() const
 	return (this->_name);
 }
 
-std::string	AForme::getType() const
+std::string	AForm::getType() const
 {
 	return (this->_type);
 }
@@ -44,12 +44,6 @@ int AForm::getGradeToSign() const
 int AForm::getGradeToExecute() const
 {
 	return (this->_grade_to_execute);
-}
-
-void AForm::beSigned(Bureaucrat &bur)
-{
-	if (!bur.signForm(this->getName(), this->getGradeToSign(), this->getGradeToExecute()))
-		throw MyException("Form::GradeTooLowException");
 }
 
 // -------->>  My Exception -------------->>

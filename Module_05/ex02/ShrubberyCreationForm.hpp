@@ -3,6 +3,7 @@
 #define __SHRUBBERYCREATIONFORM_HPP__
 
 #include "Bureaucrat.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
@@ -16,7 +17,7 @@ public:
 	~ShrubberyCreationForm();
 
 	void		beSigned(Bureaucrat & bur);
-	void		execute(Bureaucrat const & executor) const;
+	bool		execute(Bureaucrat const & executor) const;
 };
 
 #endif
