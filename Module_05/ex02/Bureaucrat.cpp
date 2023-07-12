@@ -27,7 +27,7 @@ std::string Bureaucrat::getName() const { return (this->_name); }
 
 int Bureaucrat::getGrade() const { return (this->_grade); }
 
-bool Bureaucrat::signForm(const AForm& fr)
+bool Bureaucrat::signForm(AForm const &fr) const
 {
 	if (this->_grade <= fr.getGradeToSign())
 	{
@@ -38,7 +38,7 @@ bool Bureaucrat::signForm(const AForm& fr)
 	return (false);
 }
 
-void Bureaucrat::executeForm(AForm const &form)
+void Bureaucrat::executeForm(AForm const &form) const
 {
 	if (form.execute(*this))
 		std::cout << this->getName() << " executed " << form.getName() << std::endl;
@@ -46,7 +46,7 @@ void Bureaucrat::executeForm(AForm const &form)
 		std::cout << "ERROR \n" << this->getName() << " NOD executed " << form.getName() << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &o, Bureaucrat &bur)
+std::ostream &operator<<(std::ostream &o, const Bureaucrat &bur)
 {
 	o << bur.getName() << ", bureaucrat grade " << bur.getGrade() << ".\n";
 	return (o);

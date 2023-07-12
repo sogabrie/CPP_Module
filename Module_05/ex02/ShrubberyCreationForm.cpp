@@ -1,24 +1,25 @@
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string name)
-: AForm("Shrubbery Creation Form", name, 145, 137) {}
+: AForm(name, "Shrubbery Creation Form", 145, 137) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) 
-: AForm("Shrubbery Creation Form", other.getName(), 145, 137){}
+: AForm(other.getName(), "Shrubbery Creation Form", 145, 137){}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other) { (void)other; return (*this); }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void ShrubberyCreationForm::beSigned(Bureaucrat &bur)
+void ShrubberyCreationForm::beSigned(Bureaucrat const &bur)
 {
 	if (!bur.signForm(*this))
 		throw MyException("ShrubberyCreationForm::GradeTooLowException");
+	this->setSigned(true);
 }
 
 bool ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	if (executor.getGrade() <= this->getGradeToExecute())
+	if (executor.getGrade() <= this->getGradeToExecute() && this->getSigned())
 	{
 		std::ofstream myfile(this->getName() + "_shrubbery");
 		if (myfile.is_open())

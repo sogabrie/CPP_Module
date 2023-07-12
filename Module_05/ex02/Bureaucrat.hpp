@@ -19,8 +19,8 @@ public:
 
 	std::string getName() const;
 	int			getGrade() const;
-	bool		signForm(const AForm& fr);
-	void		executeForm(AForm const & form);
+	bool		signForm(AForm const &fr) const;
+	void		executeForm(AForm const & form) const;
 
 private:
 
@@ -35,6 +35,6 @@ private:
 	};
 };
 
-std::ostream& operator<<(std::ostream &o, Bureaucrat& bur);
+std::ostream& operator<<(std::ostream &o, const Bureaucrat& bur);
 
 #endif

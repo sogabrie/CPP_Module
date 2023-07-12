@@ -46,6 +46,11 @@ int AForm::getGradeToExecute() const
 	return (this->_grade_to_execute);
 }
 
+void AForm::setSigned(bool a)
+{
+	this->_signed = a;
+}
+
 // -------->>  My Exception -------------->>
 
 AForm::MyException::MyException(const std::string &error) : _error(error) {}
@@ -54,7 +59,7 @@ AForm::MyException::~MyException() throw() {}
 
 const char *AForm::MyException::what() const throw() { return ((this->_error.data())); }
 
-std::ostream &operator<<(std::ostream &o, AForm &bur)
+std::ostream &operator<<(std::ostream &o, const AForm &bur)
 {
 	o << "AForm name  " << bur.getName() << " Signed " << 
 	bur.getSigned() << " Grade To Sign " << bur.getGradeToSign()

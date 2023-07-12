@@ -25,7 +25,8 @@ public:
 	bool			getSigned() const;
 	int				getGradeToSign() const;
 	int				getGradeToExecute() const;
-	virtual void	beSigned(Bureaucrat & bur) = 0;
+	void			setSigned(bool a);
+	virtual void	beSigned(Bureaucrat const & bur) = 0;
 	virtual	bool	execute(Bureaucrat const & executor) const = 0;
 
 protected:
@@ -41,6 +42,6 @@ protected:
 	};
 };
 
-std::ostream& operator<<(std::ostream &o, AForm& bur);
+std::ostream& operator<<(std::ostream &o, const AForm& bur);
 
 #endif
