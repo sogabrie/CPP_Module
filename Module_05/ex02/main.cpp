@@ -41,6 +41,6 @@ int main()
 	delete c;
 	delete d;
 
-	system("leaks run");
+	// system("leaks run");
 	return (0);
 }

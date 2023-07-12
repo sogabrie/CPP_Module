@@ -23,6 +23,7 @@ public:
 	bool		getSigned() const;
 	int			getGradeToSign() const;
 	int			getGradeToExecute() const;
+	void		setSigned(bool a);
 	void		beSigned(Bureaucrat & bur);
 
 private:

@@ -41,10 +41,16 @@ int Form::getGradeToExecute() const
 	return (this->_grade_to_execute);
 }
 
+void Form::setSigned(bool a)
+{
+	this->_signed = a;
+}
+
 void Form::beSigned(Bureaucrat &bur)
 {
-	if (!bur.signForm(this->getName(), this->getGradeToSign(), this->getGradeToExecute()))
+	if (!bur.signForm(this->getName(), this->getGradeToSign()))
 		throw MyException("Form::GradeTooLowException");
+	this->setSigned(true);
 }
 
 // -------->>  My Exception -------------->>

@@ -5,7 +5,7 @@ int main()
 {
 	try
 	{
-		Bureaucrat a("AAA", 20);
+		Bureaucrat a("AAA", 50);
 		std::cout << a;
 	}
 	catch(std::exception& e)
