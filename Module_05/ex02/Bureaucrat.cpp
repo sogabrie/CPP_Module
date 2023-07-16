@@ -22,6 +22,36 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::~Bureaucrat() {}
 
+Bureaucrat &Bureaucrat::operator++()
+{
+	if (this->_grade > 1)
+		--this->_grade;
+	return (*this);
+}
+
+Bureaucrat Bureaucrat::operator++(int)
+{
+	Bureaucrat a(*this);
+	if (this->_grade > 1)
+		--this->_grade;
+    return (a);
+}
+
+Bureaucrat &Bureaucrat::operator--()
+{
+	if (this->_grade < 150)
+		++this->_grade;
+	return (*this);
+}
+
+Bureaucrat Bureaucrat::operator--(int)
+{
+	Bureaucrat a(*this);
+	if (this->_grade < 150)
+		++this->_grade;
+    return (a);
+}
+
 std::string Bureaucrat::getName() const { return (this->_name); }
 
 int Bureaucrat::getGrade() const { return (this->_grade); }

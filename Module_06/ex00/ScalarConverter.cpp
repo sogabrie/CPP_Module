@@ -1,7 +1,7 @@
 #include "ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter() 
-: _status(STATUS::EMTY) {}
+: _status(EMTY) {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) 
 : _type(other._type), _status(other._status), _ptr(other._ptr),
@@ -30,61 +30,80 @@ ScalarConverter::~ScalarConverter() {}
 
 TYPE_L ScalarConverter::getType()
 {
-	int i = 0;
+	size_t i = 0;
 
-	if (this->_status == STATUS::OK)
+	if (this->_status == OK)
 		return (this->_type);
 	if (!this->_ptr.size())
 	{
-		this->_status = STATUS::EMTY
+		this->_status = EMTY;
 		return (this->_type);
 	}
-	if (this->_status == STATUS::ERROR)
+	if (this->_status == ERROR)
 		throw MyException("ERROR TYPE");
 	if (this->_ptr.size() == 1 && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
 	|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
 	{
-		return (TYPE_L::CHAR);
+		return (CHAR);
 	}
 	if (this->_ptr[i] != '-' && this->_ptr[i] != '+' && (this->_ptr[i] < '0' || this->_ptr[i] > '9'))
 	{
-		this->_status = STATUS::ERROR;
+		this->_status = ERROR;
 		throw MyException("ERROR TYPE");
 	}
+	std::cout << "aaa_1\n"; 
 	if (this->_ptr[i] != '-' || this->_ptr[i] != '+')
 		i++;
+	std::cout << "aaa_2\n"; 
 	if (this->_ptr[i] < '0' || this->_ptr[i] > '9')
 	{
-		this->_status = STATUS::ERROR;
+		this->_status = ERROR;
 		throw MyException("ERROR TYPE");
 	}
-	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' || this->_ptr[i] <= '9')); ++i);
-	if (!(this->_ptr[i] == '.' && (i + 1) <  this->_ptr.size() && 
-	((this->_ptr[i] >= '0' || this->_ptr[i] <= '9'))) || (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size()))
+	std::cout << "aaa_3\n";
+	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
+	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' && this->_ptr[i] <= '9')); ++i);
+	std::cout << "aaa_4\n";
+	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
+	if ((this->_ptr[i] == '.' && ((i + 1) == this->_ptr.size() || 
+	this->_ptr[i + 1] < '0' || this->_ptr[i + 1] > '9')) || (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size()))
 	{
-		this->_status = STATUS::ERROR;
+		this->_status = ERROR;
 		throw MyException("ERROR TYPE");
 	}
+	std::cout << "aaa_5\n"; 
 	++i;
+	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
 	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' || this->_ptr[i] <= '9') || this->_ptr[i] == 'f'); ++i)
 	{
+		std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
 		if (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size())
 		{
-			this->_status = STATUS::ERROR;
+			this->_status = ERROR;
 			throw MyException("ERROR TYPE");
 		}
-		if (ptr[i] < '0' && ptr[i] > '9' && this->_ptr[i] != 'f')
+		if (this->_ptr[i] < '0' && this->_ptr[i] > '9' && this->_ptr[i] != 'f')
 		{
-			this->_status = STATUS::ERROR;
+			this->_status = ERROR;
 			throw MyException("ERROR TYPE");
 		}
 	}
+	std::cout << "aaa_6\n";
+	if (this->_ptr[this->_ptr.size() - 1] == 'f')
+		return (FLOAT);
+	for (size_t i = 0; i < this->_ptr.size(); i++)
+	{
+		if (this->_ptr[i] == '.')
+			return (DOUBLE);
+	}
+	
 
-	return TYPE_L();
+	return (INT);
 }
 
 void ScalarConverter::convert(std::string str)
 {
+	this->_ptr = str;
 }
 
 void ScalarConverter::CharTo()
@@ -115,5 +134,6 @@ const char *ScalarConverter::MyException::what() const throw() { return ((this->
 
 std::ostream &operator<<(std::ostream &o, const ScalarConverter &pt)
 {
-	// TODO: вставьте здесь оператор return
+	(void)pt;
+	return (o);
 }

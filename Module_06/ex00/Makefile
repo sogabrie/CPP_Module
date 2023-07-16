@@ -4,7 +4,7 @@ CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
-FILES		= main 
+FILES		= main ScalarConverter
 SRC			= $(FILES:=.cpp)
 OBJ			= $(FILES:=.o)
 HEADER		= $(wildcard *.hpp)

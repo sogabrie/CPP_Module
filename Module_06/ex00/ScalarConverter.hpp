@@ -6,7 +6,6 @@
 
 enum TYPE_L
 {
-	EMTY,
 	NAN,
 	INF,
 	_INF,
@@ -14,7 +13,7 @@ enum TYPE_L
 	INT,
 	FLOAT,
 	DOUBLE
-}
+};
 
 enum STATUS
 {
@@ -22,7 +21,7 @@ enum STATUS
 	EMTY,
 	ERROR,
 	IMPOSSIBLE
-}
+};
 
 class ScalarConverter
 {
@@ -33,7 +32,7 @@ private:
 	std::string	_ptr;
 	int			_int;
 	STATUS		_statusInt;
-	double		_dauble;
+	double		_double;
 	STATUS		_statusDouble;
 	float		_float;
 	STATUS		_statusFloat;
