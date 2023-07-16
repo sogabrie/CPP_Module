@@ -39,36 +39,41 @@ TYPE_L ScalarConverter::getType()
 		this->_status = STATUS::EMTY
 		return (this->_type);
 	}
-	if (this->_status == STATUS::ERROR )
+	if (this->_status == STATUS::ERROR)
 		throw MyException("ERROR TYPE");
-	if (ptr[i] != '-' && ptr[i] != '+' && (ptr[i] < '0' || ptr[i] > '9'))
+	if (this->_ptr.size() == 1 && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
+	|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
+	{
+		return (TYPE_L::CHAR);
+	}
+	if (this->_ptr[i] != '-' && this->_ptr[i] != '+' && (this->_ptr[i] < '0' || this->_ptr[i] > '9'))
 	{
 		this->_status = STATUS::ERROR;
 		throw MyException("ERROR TYPE");
 	}
-	if (ptr[i] != '-' || ptr[i] != '+')
+	if (this->_ptr[i] != '-' || this->_ptr[i] != '+')
 		i++;
-	if (ptr[i] < '0' || ptr[i] > '9')
+	if (this->_ptr[i] < '0' || this->_ptr[i] > '9')
 	{
 		this->_status = STATUS::ERROR;
 		throw MyException("ERROR TYPE");
 	}
-	for (; i < this->_ptr.size() && ((ptr[i] >= '0' || ptr[i] <= '9')); ++i);
-	if (!(ptr[i] == '.' && (i + 1) <  this->_ptr.size() && 
-	((ptr[i] >= '0' || ptr[i] <= '9'))) || (ptr[i] == 'f' && (i + 1) != this->_ptr.size()))
+	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' || this->_ptr[i] <= '9')); ++i);
+	if (!(this->_ptr[i] == '.' && (i + 1) <  this->_ptr.size() && 
+	((this->_ptr[i] >= '0' || this->_ptr[i] <= '9'))) || (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size()))
 	{
 		this->_status = STATUS::ERROR;
 		throw MyException("ERROR TYPE");
 	}
 	++i;
-	for (; i < this->_ptr.size() && ((ptr[i] >= '0' || ptr[i] <= '9') || ptr[i] == 'f'); ++i)
+	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' || this->_ptr[i] <= '9') || this->_ptr[i] == 'f'); ++i)
 	{
-		if (ptr[i] == 'f' && (i + 1) != this->_ptr.size())
+		if (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size())
 		{
 			this->_status = STATUS::ERROR;
 			throw MyException("ERROR TYPE");
 		}
-		if (ptr[i] < '0' && ptr[i] > '9' && ptr[i] != 'f')
+		if (ptr[i] < '0' && ptr[i] > '9' && this->_ptr[i] != 'f')
 		{
 			this->_status = STATUS::ERROR;
 			throw MyException("ERROR TYPE");
