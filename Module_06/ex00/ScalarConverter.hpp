@@ -6,44 +6,74 @@
 
 enum TYPE_L
 {
+	EMTY,
+	NAN,
+	INF,
+	_INF,
 	CHAR,
 	INT,
 	FLOAT,
 	DOUBLE
 }
 
+enum STATUS
+{
+	OK,
+	EMTY,
+	ERROR
+}
+
 class ScalarConverter
 {
 private:
-    ScalarConverter();
 
-	static TYPE_L	getType(std::string str);
-	static int		getInt(std::string str);
-	static char		getChar(std::string str);
-	static float	getFloat(std::string str);
-	static double	getDouble(std::string str);
+	TYPE_L		_type;
+	STATUS		_status;
+	std::string	_ptr;
+	int			_int;
+	double		_dauble;
+	float		_float;
+	char		_char;
 
-	static int		CharToInt(char str);
-	static int		FloatToInt(float str);
-	static int		DoubleToInt(double str);
-
-	static char		IntToChar(int str);
-	static char		FloatToChar(float str);
-	static char		DoubleToChar(double str);
-
-	static float	IntleToFloat(int str);
-	static float	CharToFloat(char str);
-	static float	DoubleToFloat(double str);
-
-	static double	IntleToDouble(int str);
-	static double	CharToDouble(char str);
-	static double	FloatToDouble(float str);
-	
 public:
-    ~ScalarConverter();
 
-	static void convert(std::string str);
+    ScalarConverter();
+	ScalarConverter(const ScalarConverter & other);
+	ScalarConverter& operator=(const ScalarConverter & other);
+	~ScalarConverter();
+
+	TYPE_L	getType(std::string str);
+	int		getInt(std::string str);
+	char	getChar(std::string str);
+	float	getFloat(std::string str);
+	double	getDouble(std::string str);
+
+	// void	print=Char();
+	// void	print=Float();
+	// void	print=Double();
+	// void	print=Int();
+
+	void 	convert(std::string str);
+
+private:
+
+	void	CharTo();
+	void	FloatTo();
+	void	DoubleTo();
+	void	IntTo();
+
+	class MyException : public std::exception
+	{
+	private:
+		const std::string _error;
+	public:
+		MyException(const std::string& error);
+		~MyException() throw();
+		const char * what () const throw ();
+	};
 };
+
+std::ostream& operator<<(std::ostream& o, const ScalarConverter& pt);
 
 
 #endif
