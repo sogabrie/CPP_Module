@@ -11,24 +11,27 @@ Intern::~Intern() {}
 AForm *Intern::makeForm(std::string const &fr, std::string const &name)
 {
 	AForm	*ret = 0;
-	std::string ptfr[] = {"shrubbery request", "robotomy request", "Ppresidential request"};
-	AForm	*a[] = 
-			{
-				new ShrubberyCreationForm(name),
-				new RobotomyRequestForm(name),
-				new PresidentialPardonForm(name)
-			};
-	for (size_t i = 0; i < 3; i++)
-	{
-		if (fr == ptfr[i])
-			ret = a[i];
-		else
-			delete a[i];
-	}
+	size_t	i = 0;
 
-	if (ret)
+	std::string ptfr[] = {"shrubbery request", "robotomy request", "Ppresidential request"};
+	for (; fr != ptfr[i] && i < 3; i++);
+	switch (i)
+	{
+	case 0:
+		ret = new ShrubberyCreationForm(name);
 		std::cout << "Intern creates " << name << std::endl;
-	else
+		break;
+	case 1:
+		ret = new RobotomyRequestForm(name);
+		std::cout << "Intern creates " << name << std::endl;
+		break;
+	case 2:
+		ret = new PresidentialPardonForm(name);
+		std::cout << "Intern creates " << name << std::endl;
+		break;
+	default:
 		std::cout << "Error creates " << name << std::endl;
+		break;
+	}
 	return (ret);
 }

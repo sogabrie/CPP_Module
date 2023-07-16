@@ -11,7 +11,7 @@ int main()
 		Intern t;
 		b = t.makeForm("Ppresidential request", "Form_1");
 		c = t.makeForm("robotomy request", "Forma_2");
-		d = t.makeForm("shrubbery request", "Forma_3");
+		d = t.makeForm("shrubbery requesta", "Forma_3");
 
 		const Bureaucrat a("AAA", 4);
 		std::cout << a;
