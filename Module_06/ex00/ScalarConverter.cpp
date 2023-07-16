@@ -52,8 +52,9 @@ TYPE_L ScalarConverter::getType()
 		throw MyException("ERROR TYPE");
 	}
 	std::cout << "aaa_1\n"; 
-	if (this->_ptr[i] != '-' || this->_ptr[i] != '+')
+	if (this->_ptr[i] == '-' || this->_ptr[i] == '+')
 		i++;
+	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
 	std::cout << "aaa_2\n"; 
 	if (this->_ptr[i] < '0' || this->_ptr[i] > '9')
 	{
@@ -65,8 +66,9 @@ TYPE_L ScalarConverter::getType()
 	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' && this->_ptr[i] <= '9')); ++i);
 	std::cout << "aaa_4\n";
 	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
-	if ((this->_ptr[i] == '.' && ((i + 1) == this->_ptr.size() || 
-	this->_ptr[i + 1] < '0' || this->_ptr[i + 1] > '9')) || (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size()))
+	if ((this->_ptr[i] == '.' && ((i + 1) == this->_ptr.size() || this->_ptr[i + 1] < '0' || 
+	this->_ptr[i + 1] > '9')) || (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size()) || (this->_ptr[i] != '.' 
+	&& this->_ptr[i] != 'f' && i != this->_ptr.size()))
 	{
 		this->_status = ERROR;
 		throw MyException("ERROR TYPE");

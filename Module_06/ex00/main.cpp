@@ -5,7 +5,7 @@ int main()
 	try
 	{
 		ScalarConverter a;
-		a.convert("0000000000000000000000000045.0f");
+		a.convert("05j.1f");
 		switch (a.getType())
 		{
 		case CHAR:
