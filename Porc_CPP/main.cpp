@@ -10,13 +10,14 @@ int main()
 {
     try
     {
-        double value = strtod("92233720368547758079999999999999", NULL);
+        double value = strtod("99999.9999", NULL);
         int a = (int)value;
-		//static_cast<int>(value);
+		// static_cast<int>(value);
         std::cout << value << " a = " << a << "\n";
 		// int g = std::stoi("2147483648");
-		double g = std::stod("a-nan");
-		std::cout << g << "\n";
+		// float g = std::stof("");
+        // int a = static_cast<int>(g);
+		// std::cout << g << "   " << a << "\n";
     }
     catch(const std::exception& e)
     {

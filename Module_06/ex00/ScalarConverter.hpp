@@ -20,7 +20,8 @@ enum STATUS
 {
 	OK,
 	EMTY,
-	ERROR
+	ERROR,
+	IMPOSSIBLE
 }
 
 class ScalarConverter
@@ -31,9 +32,13 @@ private:
 	STATUS		_status;
 	std::string	_ptr;
 	int			_int;
+	STATUS		_statusInt;
 	double		_dauble;
+	STATUS		_statusDouble;
 	float		_float;
+	STATUS		_statusFloat;
 	char		_char;
+	STATUS		_statusChar;
 
 public:
 
@@ -42,11 +47,7 @@ public:
 	ScalarConverter& operator=(const ScalarConverter & other);
 	~ScalarConverter();
 
-	TYPE_L	getType(std::string str);
-	int		getInt(std::string str);
-	char	getChar(std::string str);
-	float	getFloat(std::string str);
-	double	getDouble(std::string str);
+	TYPE_L	getType();
 
 	// void	print=Char();
 	// void	print=Float();
