@@ -7,9 +7,9 @@
 struct Data
 {
 	int		a;
-	double	b;
 	float	c;
-}
+	double	b;
+};
 
 class Serializer
 {
@@ -21,6 +21,4 @@ public:
 	uintptr_t serialize(Data* ptr);
 	Data* deserialize(uintptr_t raw);
 };
-
-
 #endif
