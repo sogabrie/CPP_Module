@@ -4,6 +4,13 @@
 
 #include <iostream>
 
+struct Data
+{
+	int		a;
+	double	b;
+	float	c;
+}
+
 class Serializer
 {
 private:

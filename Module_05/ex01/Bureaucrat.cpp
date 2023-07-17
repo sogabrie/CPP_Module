@@ -24,31 +24,35 @@ Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat &Bureaucrat::operator++()
 {
-	if (this->_grade > 1)
-		--this->_grade;
+	if (this->_grade - 1 < 1)
+		throw MyException("Bureaucrat::GradeTooHighException");
+	--this->_grade;
 	return (*this);
 }
 
 Bureaucrat Bureaucrat::operator++(int)
 {
 	Bureaucrat a(*this);
-	if (this->_grade > 1)
-		--this->_grade;
+	if (this->_grade - 1 < 1)
+		throw MyException("Bureaucrat::GradeTooHighException");
+	--this->_grade;
     return (a);
 }
 
 Bureaucrat &Bureaucrat::operator--()
 {
-	if (this->_grade < 150)
-		++this->_grade;
+	if (this->_grade + 1 > 150)
+		throw MyException("Bureaucrat::GradeTooLowException");
+	++this->_grade;
 	return (*this);
 }
 
 Bureaucrat Bureaucrat::operator--(int)
 {
 	Bureaucrat a(*this);
-	if (this->_grade < 150)
-		++this->_grade;
+	if (this->_grade + 1 > 150)
+		throw MyException("Bureaucrat::GradeTooLowException");
+	++this->_grade;
     return (a);
 }
 
