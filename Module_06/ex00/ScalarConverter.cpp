@@ -108,10 +108,15 @@ void ScalarConverter::FloatTo()
 	{
 		this->_float = std::stof(this->_ptr);
 		this->_double = static_cast<double>(this->_float);
-		this->_int = static_cast<int>(this->_float);
+		if (this->_double > INT_MAX || this->_double < INT_MIN)
+			this->_statusInt = IMPOSSIBLE;
+		else
+		{
+			this->_int = static_cast<int>(this->_double);
+			this->_statusInt = OK;
+		}
 		this->_statusFloat = OK;
 		this->_statusDouble = OK;
-		this->_statusInt = OK;
 		if (!(this->_double - static_cast<double>(this->_int)) && ((this->_int >= '!' && this->_int <= '/') 
 		|| (this->_int >= ':' && this->_int <= '~')))
 		{
@@ -150,10 +155,15 @@ void ScalarConverter::DoubleTo()
 	{
 		this->_double = std::stod(this->_ptr);
 		this->_float = static_cast<double>(this->_double);
-		this->_int = static_cast<int>(this->_double);
+		if (this->_double > INT_MAX || this->_double < INT_MIN)
+			this->_statusInt = IMPOSSIBLE;
+		else
+		{
+			this->_int = static_cast<int>(this->_double);
+			this->_statusInt = OK;
+		}
 		this->_statusFloat = OK;
 		this->_statusDouble = OK;
-		this->_statusInt = OK;
 		if (!(this->_double - this->_int) && ((this->_int >= '!' && this->_int <= '/') 
 		|| (this->_int >= ':' && this->_int <= '~')))
 		{
