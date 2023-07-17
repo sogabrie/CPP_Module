@@ -1,7 +1,8 @@
 #include "ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter() 
-: _status(EMTY) {}
+: _status(EMTY), _statusInt(OK), _statusDouble(OK), 
+_statusFloat(OK), _statusChar(OK) {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) 
 : _type(other._type), _status(other._status), _ptr(other._ptr),
@@ -30,17 +31,142 @@ ScalarConverter::~ScalarConverter() {}
 
 TYPE_L ScalarConverter::getType()
 {
-	size_t i = 0;
-
 	if (this->_status == OK)
 		return (this->_type);
 	if (!this->_ptr.size())
 	{
 		this->_status = EMTY;
-		return (this->_type);
+		return (_EMTY);
 	}
 	if (this->_status == ERROR)
 		throw MyException("ERROR TYPE");
+	return (this->fType());
+}
+
+void ScalarConverter::convert(std::string str)
+{
+	this->_ptr = str;
+	this->_type = this->getType();
+	switch (this->_type)
+	{
+	case CHAR:
+		this->CharTo();
+		break;
+	case DOUBLE:
+		this->DoubleTo();
+		break;
+	case INT:
+		this->IntTo();
+		break;
+	case FLOAT:
+		this->FloatTo();
+		break;
+	default:
+		std::cout << "Emty class \n";
+		break;
+	}
+}
+
+void ScalarConverter::CharTo()
+{
+	this->_char = this->_ptr[0];
+	this->_double = static_cast<double>(this->_char);
+	this->_int = static_cast<int>(this->_char);
+	this->_float = static_cast<float>(this->_char);
+}
+
+void ScalarConverter::FloatTo()
+{
+	if (this->_ptr.compare("-inff"))
+	{
+		this->_statusFloat = _INF;
+		this->_double = _INF;
+		this->_int = IMPOSSIBLE;
+		this->_char = IMPOSSIBLE;
+	}
+	else if (this->_ptr.compare("+inff"))
+	{
+		this->_statusFloat = INF;
+		this->_double = INF;
+		this->_int = IMPOSSIBLE;
+		this->_char = IMPOSSIBLE;
+	}
+	else if (this->_ptr.compare("nanf"))
+	{
+		this->_statusFloat = NAN;
+		this->_double = NAN;
+		this->_int = IMPOSSIBLE;
+		this->_char = IMPOSSIBLE;
+	}
+	else
+	{
+		this->_float = std::stof(this->_ptr);
+		this->_double = static_cast<double>(this->_float);
+		this->_int = static_cast<int>(this->_float);
+		if (!(this->_double - static_cast<double>(this->_int)) && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
+		|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
+			this->_char = static_cast<char>(this->_int);
+		else
+			this->_statusChar = IMPOSSIBLE;
+	}
+}
+
+void ScalarConverter::DoubleTo()
+{
+	if (this->_ptr.compare("-inf"))
+	{
+		this->_statusFloat = _INF;
+		this->_double = _INF;
+		this->_int = IMPOSSIBLE;
+		this->_char = IMPOSSIBLE;
+	}
+	else if (this->_ptr.compare("+inf"))
+	{
+		this->_statusFloat = INF;
+		this->_double = INF;
+		this->_int = IMPOSSIBLE;
+		this->_char = IMPOSSIBLE;
+	}
+	else if (this->_ptr.compare("nan"))
+	{
+		this->_statusFloat = NAN;
+		this->_double = NAN;
+		this->_int = IMPOSSIBLE;
+		this->_char = IMPOSSIBLE;
+	}
+	else
+	{
+		this->_double = std::stod(this->_ptr);
+		this->_float = static_cast<double>(this->_double);
+		this->_int = static_cast<int>(this->_double);
+		if (!(this->_double - this->_int) && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
+		|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
+			this->_char = static_cast<char>(this->_int);
+		else
+			this->_statusChar = IMPOSSIBLE;
+	}
+}
+
+void ScalarConverter::IntTo()
+{
+	this->_int = std::stoi(this->_ptr);
+	this->_double = static_cast<double>(this->_int);
+	this->_float = static_cast<float>(this->_int);
+	if ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
+	|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~'))
+		this->_char = static_cast<char>(this->_int);
+	else
+		this->_statusChar = IMPOSSIBLE;
+}
+
+TYPE_L ScalarConverter::fType()
+{
+	size_t i = 0;
+
+	if (this->_ptr.compare("-inf") || this->_ptr.compare("+inf") || this->_ptr.compare("nan"))
+		return (DOUBLE);
+	if (this->_ptr.compare("-inff") || this->_ptr.compare("+inff") || this->_ptr.compare("nanf"))
+		return (FLOAT);
 	if (this->_ptr.size() == 1 && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
 	|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
 	{
@@ -51,20 +177,16 @@ TYPE_L ScalarConverter::getType()
 		this->_status = ERROR;
 		throw MyException("ERROR TYPE");
 	}
-	std::cout << "aaa_1\n"; 
 	if (this->_ptr[i] == '-' || this->_ptr[i] == '+')
 		i++;
 	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
-	std::cout << "aaa_2\n"; 
 	if (this->_ptr[i] < '0' || this->_ptr[i] > '9')
 	{
 		this->_status = ERROR;
 		throw MyException("ERROR TYPE");
 	}
-	std::cout << "aaa_3\n";
 	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
 	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' && this->_ptr[i] <= '9')); ++i);
-	std::cout << "aaa_4\n";
 	std ::cout << "i = " << i << " size == " << this->_ptr.size() << std::endl;
 	if ((this->_ptr[i] == '.' && ((i + 1) == this->_ptr.size() || this->_ptr[i + 1] < '0' || 
 	this->_ptr[i + 1] > '9')) || (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size()) || (this->_ptr[i] != '.' 
@@ -90,7 +212,6 @@ TYPE_L ScalarConverter::getType()
 			throw MyException("ERROR TYPE");
 		}
 	}
-	std::cout << "aaa_6\n";
 	if (this->_ptr[this->_ptr.size() - 1] == 'f')
 		return (FLOAT);
 	for (size_t i = 0; i < this->_ptr.size(); i++)
@@ -98,30 +219,8 @@ TYPE_L ScalarConverter::getType()
 		if (this->_ptr[i] == '.')
 			return (DOUBLE);
 	}
-	
-
+	this->_status = OK;
 	return (INT);
-}
-
-void ScalarConverter::convert(std::string str)
-{
-	this->_ptr = str;
-}
-
-void ScalarConverter::CharTo()
-{
-}
-
-void ScalarConverter::FloatTo()
-{
-}
-
-void ScalarConverter::DoubleTo()
-{
-}
-
-void ScalarConverter::IntTo()
-{
 }
 
 // -------->>  My Exception -------------->>

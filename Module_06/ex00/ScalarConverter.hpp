@@ -6,9 +6,7 @@
 
 enum TYPE_L
 {
-	NAN,
-	INF,
-	_INF,
+	_EMTY,
 	CHAR,
 	INT,
 	FLOAT,
@@ -17,6 +15,9 @@ enum TYPE_L
 
 enum STATUS
 {
+	NAN,
+	INF,
+	_INF,
 	OK,
 	EMTY,
 	ERROR,
@@ -48,11 +49,6 @@ public:
 
 	TYPE_L	getType();
 
-	// void	print=Char();
-	// void	print=Float();
-	// void	print=Double();
-	// void	print=Int();
-
 	void 	convert(std::string str);
 
 private:
@@ -61,6 +57,8 @@ private:
 	void	FloatTo();
 	void	DoubleTo();
 	void	IntTo();
+	TYPE_L	fType();
+
 
 	class MyException : public std::exception
 	{
