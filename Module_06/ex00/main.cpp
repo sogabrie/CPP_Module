@@ -5,7 +5,7 @@ int main()
 	try
 	{
 		ScalarConverter a;
-		a.convert("05j.1f");
+		a.convert("060.1f");
 		switch (a.getType())
 		{
 		case CHAR:
@@ -24,6 +24,7 @@ int main()
 			std::cout << "Vochmek \n";
 			break;
 		}
+		std::cout << a;
 	}
 	catch(const std::exception& e)
 	{

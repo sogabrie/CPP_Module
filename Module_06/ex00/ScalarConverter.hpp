@@ -49,6 +49,18 @@ public:
 
 	TYPE_L	getType();
 
+	STATUS	getStatus() const;
+
+	char	getChar() const;
+	int		getInt() const;
+	float	getFloat() const;
+	double	getDouble() const;
+
+	STATUS	getCharStatus() const;
+	STATUS	getIntStatus() const;
+	STATUS	getFloatStatus() const;
+	STATUS	getDoubleStatus() const;
+
 	void 	convert(std::string str);
 
 private:
@@ -58,7 +70,6 @@ private:
 	void	DoubleTo();
 	void	IntTo();
 	TYPE_L	fType();
-
 
 	class MyException : public std::exception
 	{
