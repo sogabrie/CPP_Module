@@ -1,11 +1,15 @@
 #include "ScalarConverter.hpp"
 
-int main()
+int main(int c, char** v)
 {
+	if (c != 2)
+	{
+		return (0);
+	}
 	try
 	{
 		ScalarConverter a;
-		a.convert("060.1f");
+		a.convert(v[1]);
 		switch (a.getType())
 		{
 		case CHAR:
@@ -25,6 +29,10 @@ int main()
 			break;
 		}
 		std::cout << a;
+	}
+	catch(const ScalarConverter::MyException& e)
+	{
+		std::cerr << e.what() << '\n';
 	}
 	catch(const std::exception& e)
 	{

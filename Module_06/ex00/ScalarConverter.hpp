@@ -71,6 +71,8 @@ private:
 	void	IntTo();
 	TYPE_L	fType();
 
+public:
+
 	class MyException : public std::exception
 	{
 	private:

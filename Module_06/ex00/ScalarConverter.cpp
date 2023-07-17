@@ -76,33 +76,33 @@ void ScalarConverter::CharTo()
 	this->_int = static_cast<int>(this->_char);
 	this->_float = static_cast<float>(this->_char);
 	this->_statusFloat = OK;
-	this->_double = OK;
-	this->_int = OK;
-	this->_char = OK;
+	this->_statusDouble = OK;
+	this->_statusInt = OK;
+	this->_statusChar = OK;
 }
 
 void ScalarConverter::FloatTo()
 {
-	if (this->_ptr.compare("-inff"))
+	if (!this->_ptr.compare("-inff"))
 	{
 		this->_statusFloat = _INF;
-		this->_double = _INF;
-		this->_int = IMPOSSIBLE;
-		this->_char = IMPOSSIBLE;
+		this->_statusDouble = _INF;
+		this->_statusInt = IMPOSSIBLE;
+		this->_statusChar = IMPOSSIBLE;
 	}
-	else if (this->_ptr.compare("+inff"))
+	else if (!this->_ptr.compare("+inff"))
 	{
 		this->_statusFloat = INF;
-		this->_double = INF;
-		this->_int = IMPOSSIBLE;
-		this->_char = IMPOSSIBLE;
+		this->_statusDouble = INF;
+		this->_statusInt = IMPOSSIBLE;
+		this->_statusChar = IMPOSSIBLE;
 	}
-	else if (this->_ptr.compare("nanf"))
+	else if (!this->_ptr.compare("nanf"))
 	{
 		this->_statusFloat = NAN;
-		this->_double = NAN;
-		this->_int = IMPOSSIBLE;
-		this->_char = IMPOSSIBLE;
+		this->_statusDouble = NAN;
+		this->_statusInt = IMPOSSIBLE;
+		this->_statusChar = IMPOSSIBLE;
 	}
 	else
 	{
@@ -110,13 +110,13 @@ void ScalarConverter::FloatTo()
 		this->_double = static_cast<double>(this->_float);
 		this->_int = static_cast<int>(this->_float);
 		this->_statusFloat = OK;
-		this->_double = OK;
-		this->_int = OK;
-		if (!(this->_double - static_cast<double>(this->_int)) && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
-		|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
+		this->_statusDouble = OK;
+		this->_statusInt = OK;
+		if (!(this->_double - static_cast<double>(this->_int)) && ((this->_int >= '!' && this->_int <= '/') 
+		|| (this->_int >= ':' && this->_int <= '~')))
 		{
 			this->_char = static_cast<char>(this->_int);
-			this->_char = OK;
+			this->_statusChar = OK;
 		}
 		else
 			this->_statusChar = IMPOSSIBLE;
@@ -125,26 +125,26 @@ void ScalarConverter::FloatTo()
 
 void ScalarConverter::DoubleTo()
 {
-	if (this->_ptr.compare("-inf"))
+	if (!this->_ptr.compare("-inf"))
 	{
 		this->_statusFloat = _INF;
-		this->_double = _INF;
-		this->_int = IMPOSSIBLE;
-		this->_char = IMPOSSIBLE;
+		this->_statusDouble = _INF;
+		this->_statusInt = IMPOSSIBLE;
+		this->_statusChar = IMPOSSIBLE;
 	}
-	else if (this->_ptr.compare("+inf"))
+	else if (!this->_ptr.compare("+inf"))
 	{
 		this->_statusFloat = INF;
-		this->_double = INF;
-		this->_int = IMPOSSIBLE;
-		this->_char = IMPOSSIBLE;
+		this->_statusDouble = INF;
+		this->_statusInt = IMPOSSIBLE;
+		this->_statusChar = IMPOSSIBLE;
 	}
-	else if (this->_ptr.compare("nan"))
+	else if (!this->_ptr.compare("nan"))
 	{
 		this->_statusFloat = NAN;
-		this->_double = NAN;
-		this->_int = IMPOSSIBLE;
-		this->_char = IMPOSSIBLE;
+		this->_statusDouble = NAN;
+		this->_statusInt = IMPOSSIBLE;
+		this->_statusChar = IMPOSSIBLE;
 	}
 	else
 	{
@@ -152,13 +152,13 @@ void ScalarConverter::DoubleTo()
 		this->_float = static_cast<double>(this->_double);
 		this->_int = static_cast<int>(this->_double);
 		this->_statusFloat = OK;
-		this->_double = OK;
-		this->_int = OK;
-		if (!(this->_double - this->_int) && ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
-		|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~')))
+		this->_statusDouble = OK;
+		this->_statusInt = OK;
+		if (!(this->_double - this->_int) && ((this->_int >= '!' && this->_int <= '/') 
+		|| (this->_int >= ':' && this->_int <= '~')))
 		{
 			this->_char = static_cast<char>(this->_int);
-			this->_char = OK;
+			this->_statusChar = OK;
 		}
 		else
 			this->_statusChar = IMPOSSIBLE;
@@ -171,13 +171,13 @@ void ScalarConverter::IntTo()
 	this->_double = static_cast<double>(this->_int);
 	this->_float = static_cast<float>(this->_int);
 	this->_statusFloat = OK;
-	this->_double = OK;
-	this->_int = OK;
-	if ((this->_ptr[0] >= '!' && this->_ptr[0] <= '/') 
-	|| (this->_ptr[0] >= ':' && this->_ptr[0] <= '~'))
+	this->_statusDouble = OK;
+	this->_statusInt = OK;
+	if ((this->_int >= '!' && this->_int <= '/') 
+	|| (this->_int >= ':' && this->_int <= '~'))
 	{
 		this->_char = static_cast<char>(this->_int);
-		this->_char = OK;
+		this->_statusChar = OK;
 	}
 	else
 		this->_statusChar = IMPOSSIBLE;
@@ -199,14 +199,14 @@ TYPE_L ScalarConverter::fType()
 	if (this->_ptr[i] != '-' && this->_ptr[i] != '+' && (this->_ptr[i] < '0' || this->_ptr[i] > '9'))
 	{
 		this->_status = ERROR;
-		throw MyException("ERROR TYPE");
+		throw MyException("Syntax ERROR");
 	}
 	if (this->_ptr[i] == '-' || this->_ptr[i] == '+')
 		i++;
 	if (this->_ptr[i] < '0' || this->_ptr[i] > '9')
 	{
 		this->_status = ERROR;
-		throw MyException("ERROR TYPE");
+		throw MyException("Syntax ERROR");
 	}
 	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' && this->_ptr[i] <= '9')); ++i);
 	if ((this->_ptr[i] == '.' && ((i + 1) == this->_ptr.size() || this->_ptr[i + 1] < '0' || 
@@ -214,7 +214,7 @@ TYPE_L ScalarConverter::fType()
 	&& this->_ptr[i] != 'f' && i != this->_ptr.size()))
 	{
 		this->_status = ERROR;
-		throw MyException("ERROR TYPE");
+		throw MyException("Syntax ERROR");
 	}
 	++i;
 	for (; i < this->_ptr.size() && ((this->_ptr[i] >= '0' || this->_ptr[i] <= '9') || this->_ptr[i] == 'f'); ++i)
@@ -222,12 +222,12 @@ TYPE_L ScalarConverter::fType()
 		if (this->_ptr[i] == 'f' && (i + 1) != this->_ptr.size())
 		{
 			this->_status = ERROR;
-			throw MyException("ERROR TYPE");
+			throw MyException("Syntax ERROR");
 		}
 		if (this->_ptr[i] < '0' && this->_ptr[i] > '9' && this->_ptr[i] != 'f')
 		{
 			this->_status = ERROR;
-			throw MyException("ERROR TYPE");
+			throw MyException("Syntax ERROR");
 		}
 	}
 	if (this->_ptr[this->_ptr.size() - 1] == 'f')
@@ -302,7 +302,6 @@ std::ostream &operator<<(std::ostream &o, const ScalarConverter &pt)
 		return (o);
 
 	o << "char: ";
-
 	switch (pt.getCharStatus())
 	{
 	case EMTY:
@@ -312,7 +311,7 @@ std::ostream &operator<<(std::ostream &o, const ScalarConverter &pt)
 		o << pt.getChar();
 		break;
 	case IMPOSSIBLE:
-		o << "IMPOSSIBLE";
+		o << "impossible";
 		break;
 	default:
 		break;
@@ -329,7 +328,7 @@ std::ostream &operator<<(std::ostream &o, const ScalarConverter &pt)
 		o << pt.getInt();
 		break;
 	case IMPOSSIBLE:
-		o << "IMPOSSIBLE";
+		o << "impossible";
 		break;
 	default:
 		break;
