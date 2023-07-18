@@ -9,7 +9,7 @@ int main(int c, char** v)
 	try
 	{
 		ScalarConverter::convert(v[1]);
-		// std::cout << ScalarConverter::;
+		ScalarConverter::print();
 	}
 	catch(const ScalarConverter::MyException& e)
 	{

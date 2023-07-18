@@ -1,16 +1,16 @@
 #include "ScalarConverter.hpp"
 
-STATUS	ScalarConverter::_status = EMTY;
-STATUS	ScalarConverter::_statusInt = EMTY;
-STATUS	ScalarConverter::_statusDouble = EMTY;
-STATUS	ScalarConverter::_statusFloat = EMTY;
-STATUS	ScalarConverter::_statusChar = EMTY;
+STATUS		ScalarConverter::_status = EMTY;
+STATUS		ScalarConverter::_statusInt = EMTY;
+STATUS		ScalarConverter::_statusDouble = EMTY;
+STATUS		ScalarConverter::_statusFloat = EMTY;
+STATUS		ScalarConverter::_statusChar = EMTY;
 TYPE_L		ScalarConverter::_type = _EMTY;
 std::string	ScalarConverter::_ptr;
 int			ScalarConverter::_int = 0;
 double		ScalarConverter::_double = 0;
 float		ScalarConverter::_float = 0;
-char			ScalarConverter::_char = 0;
+char		ScalarConverter::_char = 0;
 
 ScalarConverter::ScalarConverter(){}
 
@@ -38,9 +38,89 @@ TYPE_L ScalarConverter::getType()
 	return (fType());
 }
 
+void ScalarConverter::print()
+{
+	if (getStatus() == EMTY)
+		return ;
+
+	std::cout << "char: ";
+	switch (getCharStatus())
+	{
+	case EMTY:
+		std::cout << "EMTY";
+		break;
+	case OK:
+		std::cout << getChar();
+		break;
+	case IMPOSSIBLE:
+		std::cout << "impossible";
+		break;
+	default:
+		break;
+	}
+
+	std::cout << "\nint: ";
+
+	switch (getIntStatus())
+	{
+	case EMTY:
+		std::cout << "EMTY";
+		break;
+	case OK:
+		std::cout << getInt();
+		break;
+	case IMPOSSIBLE:
+		std::cout << "impossible";
+		break;
+	default:
+		break;
+	}
+
+	switch (getFloatStatus())
+	{
+	case EMTY:
+		std::cout << "\nfloat: EMTY";
+		break;
+	case OK:
+		std::cout << "\nfloat: " << getFloat();
+		break;
+	default:
+		break;
+	}
+
+	switch (getDoubleStatus())
+	{
+	case EMTY:
+		std::cout << "\nDouble: EMTY\n";
+		break;
+	case OK:
+		std::cout << "\nDouble: " << getDouble() << "\n";
+		break;
+	default:
+		break;
+	}
+
+	switch (getDoubleStatus())
+	{
+	case NAN:
+		std::cout << "\nfloat: nanf";
+		std::cout << "\nDouble: nan\n";
+		break;
+	case INF:
+		std::cout << "\nfloat: +inff";
+		std::cout << "\nDouble: +inf\n";
+		break;
+	case _INF:
+		std::cout << "\nfloat: -inff";
+		std::cout << "\nDouble: -inf\n";
+		break;
+	default:
+		break;
+	}
+}
+
 void ScalarConverter::convert(std::string str)
 {
-	std::cout << "aaaa_0\n"; 
 	ScalarConverter::_ptr = str;
 	ScalarConverter::_type = ScalarConverter::getType();
 	ScalarConverter::_status = OK;
@@ -301,85 +381,3 @@ ScalarConverter::MyException::~MyException() throw() {}
 const char *ScalarConverter::MyException::what() const throw() { return ((_error.data())); }
 
 // -------->> END  My Exception -------------->>
-
-// std::ostream &operator<<(std::ostream &o, const ScalarConverter &pt)
-// {
-// 	if (pt.getStatus() == EMTY)
-// 		return (o);
-
-// 	o << "char: ";
-// 	switch (pt.getCharStatus())
-// 	{
-// 	case EMTY:
-// 		o << "EMTY";
-// 		break;
-// 	case OK:
-// 		o << pt.getChar();
-// 		break;
-// 	case IMPOSSIBLE:
-// 		o << "impossible";
-// 		break;
-// 	default:
-// 		break;
-// 	}
-
-// 	o << "\nint: ";
-
-// 	switch (pt.getIntStatus())
-// 	{
-// 	case EMTY:
-// 		o << "EMTY";
-// 		break;
-// 	case OK:
-// 		o << pt.getInt();
-// 		break;
-// 	case IMPOSSIBLE:
-// 		o << "impossible";
-// 		break;
-// 	default:
-// 		break;
-// 	}
-
-// 	switch (pt.getFloatStatus())
-// 	{
-// 	case EMTY:
-// 		o << "\nfloat: EMTY";
-// 		break;
-// 	case OK:
-// 		o << "\nfloat: " << pt.getFloat();
-// 		break;
-// 	default:
-// 		break;
-// 	}
-
-// 	switch (pt.getDoubleStatus())
-// 	{
-// 	case EMTY:
-// 		o << "\nDouble: EMTY\n";
-// 		break;
-// 	case OK:
-// 		o << "\nDouble: " << pt.getDouble() << "\n";
-// 		break;
-// 	default:
-// 		break;
-// 	}
-
-// 	switch (pt.getDoubleStatus())
-// 	{
-// 	case NAN:
-// 		o << "\nfloat: nanf";
-// 		o << "\nDouble: nan\n";
-// 		break;
-// 	case INF:
-// 		o << "\nfloat: +inff";
-// 		o << "\nDouble: +inf\n";
-// 		break;
-// 	case _INF:
-// 		o << "\nfloat: -inff";
-// 		o << "\nDouble: -inf\n";
-// 		break;
-// 	default:
-// 		break;
-// 	}
-// 	return (o);
-// }

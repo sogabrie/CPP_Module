@@ -50,6 +50,8 @@ public:
 
 public:
 
+	static void		print();
+
 	static STATUS	getStatus();
 
 	static char		getChar();
@@ -84,18 +86,6 @@ public:
 		const char * what () const throw ();
 	};
 };
-
-// STATUS	ScalarConverter::_status = EMTY;
-// STATUS	ScalarConverter::_statusInt = EMTY;
-// STATUS	ScalarConverter::_statusDouble = EMTY;
-// STATUS	ScalarConverter::_statusFloat = EMTY;
-// STATUS	ScalarConverter::_statusChar = EMTY;
-// TYPE_L		ScalarConverter::_type = _EMTY;
-// std::string	ScalarConverter::_ptr = 0;
-// int			ScalarConverter::_int = 0;
-// double		ScalarConverter::_double = 0;
-// float		ScalarConverter::_float = 0;
-// char			ScalarConverter::_char = 0;
 
 // std::ostream& operator<<(std::ostream& o, const ScalarConverter& pt);
 
