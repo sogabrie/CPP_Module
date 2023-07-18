@@ -8,9 +8,8 @@ int main(int c, char** v)
 	}
 	try
 	{
-		ScalarConverter a;
-		a.convert(v[1]);
-		std::cout << a;
+		ScalarConverter::convert(v[1]);
+		// std::cout << ScalarConverter::;
 	}
 	catch(const ScalarConverter::MyException& e)
 	{

@@ -28,48 +28,49 @@ class ScalarConverter
 {
 private:
 
-	TYPE_L		_type;
-	STATUS		_status;
-	std::string	_ptr;
-	int			_int;
-	STATUS		_statusInt;
-	double		_double;
-	STATUS		_statusDouble;
-	float		_float;
-	STATUS		_statusFloat;
-	char		_char;
-	STATUS		_statusChar;
-
+	static TYPE_L		_type;
+	static STATUS		_status;
+	static std::string	_ptr;
+	static int			_int;
+	static STATUS		_statusInt;
+	static double		_double;
+	static STATUS		_statusDouble;
+	static float		_float;
+	static STATUS		_statusFloat;
+	static char			_char;
+	static STATUS		_statusChar;
+	
 public:
-
     ScalarConverter();
 	ScalarConverter(const ScalarConverter & other);
 	ScalarConverter& operator=(const ScalarConverter & other);
 	~ScalarConverter();
 
-	TYPE_L	getType();
+	static TYPE_L	getType();
 
-	STATUS	getStatus() const;
+public:
 
-	char	getChar() const;
-	int		getInt() const;
-	float	getFloat() const;
-	double	getDouble() const;
+	static STATUS	getStatus();
 
-	STATUS	getCharStatus() const;
-	STATUS	getIntStatus() const;
-	STATUS	getFloatStatus() const;
-	STATUS	getDoubleStatus() const;
+	static char		getChar();
+	static int		getInt();
+	static float	getFloat();
+	static double	getDouble();
 
-	void 	convert(std::string str);
+	static STATUS	getCharStatus();
+	static STATUS	getIntStatus();
+	static STATUS	getFloatStatus();
+	static STATUS	getDoubleStatus();
+
+	static void 	convert(std::string str);
 
 private:
 
-	void	CharTo();
-	void	FloatTo();
-	void	DoubleTo();
-	void	IntTo();
-	TYPE_L	fType();
+	static void		CharTo();
+	static void		FloatTo();
+	static void		DoubleTo();
+	static void		IntTo();
+	static TYPE_L	fType();
 
 public:
 
@@ -84,7 +85,19 @@ public:
 	};
 };
 
-std::ostream& operator<<(std::ostream& o, const ScalarConverter& pt);
+// STATUS	ScalarConverter::_status = EMTY;
+// STATUS	ScalarConverter::_statusInt = EMTY;
+// STATUS	ScalarConverter::_statusDouble = EMTY;
+// STATUS	ScalarConverter::_statusFloat = EMTY;
+// STATUS	ScalarConverter::_statusChar = EMTY;
+// TYPE_L		ScalarConverter::_type = _EMTY;
+// std::string	ScalarConverter::_ptr = 0;
+// int			ScalarConverter::_int = 0;
+// double		ScalarConverter::_double = 0;
+// float		ScalarConverter::_float = 0;
+// char			ScalarConverter::_char = 0;
+
+// std::ostream& operator<<(std::ostream& o, const ScalarConverter& pt);
 
 
 #endif
