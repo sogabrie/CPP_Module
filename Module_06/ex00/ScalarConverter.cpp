@@ -26,8 +26,6 @@ ScalarConverter::~ScalarConverter() {}
 
 TYPE_L ScalarConverter::getType()
 {
-	if (_status == OK)
-		return (_type);
 	if (!_ptr.size())
 	{
 		_status = EMTY;
@@ -50,7 +48,7 @@ void ScalarConverter::print()
 		std::cout << "EMTY";
 		break;
 	case OK:
-		std::cout << getChar();
+		std::cout << "'" << getChar() << "'";
 		break;
 	case IMPOSSIBLE:
 		std::cout << "impossible";
@@ -82,7 +80,7 @@ void ScalarConverter::print()
 		std::cout << "\nfloat: EMTY";
 		break;
 	case OK:
-		std::cout << "\nfloat: " << getFloat();
+		std::cout << "\nfloat: " << getFloat() << "f";
 		break;
 	default:
 		break;

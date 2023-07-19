@@ -19,29 +19,33 @@ void bbb(const int &a)
 
 int main()
 {
-    try
-    {
-        // double value = strtod("99999.9999", NULL);
-        // int a = (int)value;
-		// // static_cast<int>(value);
-        // std::cout << value << " a = " << a << "\n";
-		// int g = std::stoi("2147483648");
-		// float g = std::stof("");
-        // int a = static_cast<int>(g);
-		// std::cout << g << "   " << a << "\n";
+	double a = 6;
+	std::cout.precision(a);
+	std::cout << std::to_string(a) << std::endl;
 
-		const int a = 12;
+    // try
+    // {
+    //     // double value = strtod("99999.9999", NULL);
+    //     // int a = (int)value;
+	// 	// // static_cast<int>(value);
+    //     // std::cout << value << " a = " << a << "\n";
+	// 	// int g = std::stoi("2147483648");
+	// 	// float g = std::stof("");
+    //     // int a = static_cast<int>(g);
+	// 	// std::cout << g << "   " << a << "\n";
 
-		std::cout << "a = " <<  a  << "\n";
+	// 	const int a = 12;
 
-		// bbb(a);
-		const_cast<int>(a) =  a + a;
+	// 	std::cout << "a = " <<  a  << "\n";
 
-		std::cout << "a = " <<  a  << "\n";
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << "ERROR " << e.what() << '\n';
-    }
+	// 	// bbb(a);
+	// 	const_cast<int>(a) =  a + a;
+
+	// 	std::cout << "a = " <<  a  << "\n";
+    // }
+    // catch(const std::exception& e)
+    // {
+    //     std::cerr << "ERROR " << e.what() << '\n';
+    // }
     return (0);
 }

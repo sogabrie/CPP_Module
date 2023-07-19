@@ -10,6 +10,9 @@ int main(int c, char** v)
 	{
 		ScalarConverter::convert(v[1]);
 		ScalarConverter::print();
+		ScalarConverter::convert("5.55");
+		ScalarConverter::print();
+
 	}
 	catch(const ScalarConverter::MyException& e)
 	{
