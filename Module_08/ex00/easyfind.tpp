@@ -2,16 +2,16 @@
 #ifndef __EASYFIND_TPP__
 #define __EASYFIND_TPP__
 
-template <class T, class R>
-R easyfind(T con, int v)
+template <typename T>
+typename T::iterator easyfind(T& con, int v)
 {
-	T::iterator it = con.begin();
-	for (; it != a.end(); ++it)
+	typename T::iterator it = con.begin();
+	for (; it != con.end(); ++it)
 	{
 		if (*it == v)
-			break;
+			return (it);
 	}
-	return it;
+	return (it);
 }
 
 #endif

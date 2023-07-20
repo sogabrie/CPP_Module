@@ -88,7 +88,8 @@
 		"__functional_03": "cpp",
 		"filesystem": "cpp",
 		"__functional_base_03": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"forward_list": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

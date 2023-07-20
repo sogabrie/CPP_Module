@@ -5,10 +5,12 @@
 int main()
 {
 	std::vector<int> a;
-	for (int i = 1; i < 15; i++)
+	for (int i = 0; i < 15; i++)
 		a.push_back(i);
-	// std::vector<int>::iterator b = easyfind(a, 5);
-	int b = easyfind(a, 5);
-	std::cout << "b = " << b << "\n";
+	std::vector<int>::iterator b = easyfind(a, 20);
+	if (b != a.end())
+		std::cout << "b = " << *b << "\n";
+	else
+		std::cout << "No  \n";
 	return (0);
 }
