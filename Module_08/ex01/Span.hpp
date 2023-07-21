@@ -9,9 +9,12 @@ class Span
 {
 private:
 	std::vector<int> _data;
+	Span();
 public:
 	Span(unsigned int size);
 	~Span();
+
+	addNumber() 
 };
 
 #endif
