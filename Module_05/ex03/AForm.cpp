@@ -14,6 +14,7 @@ _grade_to_execute(other._grade_to_execute), _signed(other._signed) {}
 
 AForm &AForm::operator=(const AForm &other)
 {
+	a.
 	if (this != &other)
 		this->_signed = other._signed;
 	return (*this);

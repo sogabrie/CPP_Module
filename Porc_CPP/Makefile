@@ -1,7 +1,7 @@
 NAME		= run
 	
 CC			= c++
-FLAGS		= -std=c++98 -Wall -Wextra -Werror
+FLAGS		= -std=c++17 -Wall -Wextra -Werror
 RM			= rm -rf
 
 FILES		= main 

@@ -12,9 +12,30 @@ private:
 	Span();
 public:
 	Span(unsigned int size);
+	Span(const Span& other);
+	Span& operator=(const Span& other);
 	~Span();
 
-	addNumber() 
+	void addNumber(int number);
+
+	int & operator[](unsigned int id);
+	size_t getSize();
+
+	int	shortestSpan();
+	int	longestSpan();
+
+private:
+	class MyException : public std::exception
+	{
+	private:
+		const std::string _error;
+	public:
+		MyException(const std::string& error);
+		~MyException() throw();
+		const char * what () const throw ();
+	};
 };
+
+std::ostream& operator<<(std::ostream& o, Span& mas);
 
 #endif

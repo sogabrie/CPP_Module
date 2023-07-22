@@ -31,7 +31,7 @@ public:
 
 protected:
 
-	class MyException : public std::exception
+	class MyException : private std::exception
 	{
 	private:
 		const std::string _error;
@@ -39,7 +39,9 @@ protected:
 		MyException(const std::string& error);
 		~MyException() throw();
 		const char * what () const throw ();
+
 	};
+	MyException a;
 };
 
 std::ostream& operator<<(std::ostream &o, const AForm& bur);

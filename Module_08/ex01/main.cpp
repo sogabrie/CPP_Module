@@ -3,6 +3,11 @@
 int main()
 {
 	Span sp = Span(5);
+	for (size_t i = 0; i < 5; i++)
+	{
+		sp.addNumber(i);
+	}
+	std::cout << sp;
 	// sp.addNumber(6);
 	// sp.addNumber(3);
 	// sp.addNumber(17);
