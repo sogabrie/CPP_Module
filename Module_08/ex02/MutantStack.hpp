@@ -4,26 +4,29 @@
 
 #include <iostream>
 #include <stack>
+#include <vector>
+#include <algorithm>
+#include <list>
+#include <deque>
 
-template <typename T>
-class MutantStack : public std::stack<T>
+template <class T, class VE = std::deque< T > >
+class MutantStack : public std::stack<T, VE>
 {
 private:
 
 public:
 	MutantStack();
 	~MutantStack();
+
+    MutantStack( const MutantStack& other );
+    MutantStack&    operator=( const MutantStack& other );
+	
+	typedef typename VE::iterator    iterator;
+
+    iterator    begin();
+    iterator    end();
 	
 };
 
-template <typename T>
-MutantStack<T>::MutantStack()
-{
-	this->c
-}
-template <typename T>
-MutantStack<T>::~MutantStack()
-{}
-
-
+#include "MutantStack.tpp"
 #endif
