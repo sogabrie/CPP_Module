@@ -40,7 +40,7 @@ private:
 	static char			_char;
 	static STATUS		_statusChar;
 	
-public:
+private:
     ScalarConverter();
 	ScalarConverter(const ScalarConverter & other);
 	ScalarConverter& operator=(const ScalarConverter & other);

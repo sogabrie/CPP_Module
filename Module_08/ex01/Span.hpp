@@ -16,13 +16,14 @@ public:
 	Span& operator=(const Span& other);
 	~Span();
 
-	void addNumber(int number);
+	void 	addNumber(int number);
 
-	int & operator[](unsigned int id);
-	size_t getSize();
+	int & 	operator[](unsigned int id);
+	size_t 	getSize();
+	void	range(unsigned int begin, unsigned int end, int data);
 
-	int	shortestSpan();
-	int	longestSpan();
+	int		shortestSpan();
+	int		longestSpan();
 
 private:
 	class MyException : public std::exception
