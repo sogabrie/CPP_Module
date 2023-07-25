@@ -1,5 +1,3 @@
-// #include <iostream>
-// #include <vector>
 #include "easyfind.hpp"
 
 int main()
@@ -7,7 +5,7 @@ int main()
 	std::vector<int> a;
 	for (int i = 0; i < 15; i++)
 		a.push_back(i);
-	std::vector<int>::iterator b = easyfind(a, 20);
+	std::vector<int>::iterator b = easyfind(a, 10);
 	if (b != a.end())
 		std::cout << "b = " << *b << "\n";
 	else
