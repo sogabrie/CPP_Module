@@ -30,6 +30,7 @@ void BitcoinExchange::btc(std::string file1, std::string file2)
 	openfile(file1);
 	if (myfile.is_open())
 	{
+		std::getline(myfile, ptr);
 		while(std::getline(myfile, ptr))
 		{
 			pos = ptr.find("|");
