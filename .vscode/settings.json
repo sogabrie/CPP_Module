@@ -89,7 +89,8 @@
 		"filesystem": "cpp",
 		"__functional_base_03": "cpp",
 		"*.tpp": "cpp",
-		"forward_list": "cpp"
+		"forward_list": "cpp",
+		"__tree": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
