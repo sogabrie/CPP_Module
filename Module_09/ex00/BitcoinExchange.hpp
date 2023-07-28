@@ -21,7 +21,7 @@ public:
 	void btc(std::string file1, std::string file2);
 
 private:
-	void openfile(std::string file1, std::string file2);
+	void openfile(std::string file1);
 
 	class MyException : public std::exception
 	{

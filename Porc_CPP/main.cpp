@@ -11,6 +11,7 @@
 #include <forward_list>
 #include <array>
 #include <deque>
+#include <map>
 
 
 void aaa(const int &a)
@@ -26,8 +27,19 @@ void bbb(const int &a)
 
 int main()
 {
+	std::map<std::string,std::string> a {std::pair<std::string,std::string>("aaa","aaa"),
+										std::pair<std::string,std::string>("bbb","bbb"),
+										std::pair<std::string,std::string>("ccc","ccc")};
+	try
+	{
+		std::cout << a.at("bb") << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 	// std::vector<int> a {1,2,3,4,5,6,};
-	std::vector<int> a(15,0);
+	// std::vector<int> a(15,0);
 
 	// a.push_back(10);
 	// a.resize(5,100);	
@@ -47,12 +59,12 @@ int main()
 	// {
 	// 	std::cerr << e.what() << '\n';
 	// }
-	for (size_t i = 0; i < a.size(); i++)
-	{
+	// for (size_t i = 0; i < a.size(); i++)
+	// {
 		// std::cout << a[i] << " ";
-		std::cout << a.data()[i] << " ";
-	}
-	std::cout << std::endl;
+	// 	std::cout << a.data()[i] << " ";
+	// }
+	// std::cout << std::endl;
 	
 
 	// double a = 6;
