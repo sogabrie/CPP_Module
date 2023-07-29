@@ -3,26 +3,29 @@
 #define __PMERGEME_HPP__
 
 #include <iostream>
+#include <algorithm>
 #include <list>
 #include <vector>
 #include <deque>
+#include <forward_list>
+#include <array>
 #include <chrono>
 
 template<class T>
 class PmergeMe
 {
 private:
-	T	_data;
-	std::chrono::high_resolution_clock::time_point _start;
+	T												_data;
+	std::chrono::high_resolution_clock::time_point	_start;
 public:
 	PmergeMe(char ** v, size_t c);
-	// PmergeMe(const PmergeMe & other);
-	// PmergeMe & operator=(const PmergeMe & other);
+	PmergeMe(const PmergeMe & other);
+	PmergeMe & operator=(const PmergeMe & other);
 	~PmergeMe();
 
 	void	printEndTime(std::string ptr);
-	// void	printData();
-	// void	sort();
+	void	printData();
+	void	sort();
 };
 
 #endif

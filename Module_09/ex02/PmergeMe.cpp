@@ -10,6 +10,17 @@ PmergeMe<T>::PmergeMe(char **v, size_t c)
 }
 
 template <class T>
+PmergeMe<T>::PmergeMe(const PmergeMe &other)
+{
+}
+
+template <class T>
+PmergeMe &PmergeMe<T>::operator=(const PmergeMe &other)
+{
+	return (*this);
+}
+
+template <class T>
 PmergeMe<T>::~PmergeMe()
 {
 }
@@ -23,4 +34,19 @@ void PmergeMe<T>::printEndTime(std::string ptr)
 	std::cout << dur.count() << "\n";
 }
 
+template <class T>
+void PmergeMe<T>::printData()
+{
+}
+
+template <class T>
+void PmergeMe<T>::sort()
+{
+}
+
 template class PmergeMe<int>;
+template class PmergeMe<list<int>>;
+template class PmergeMe<vector<int>>;
+template class PmergeMe<deque<int>>;
+template class PmergeMe<forward_list<int>>;
+template class PmergeMe<array<int8_t>>;

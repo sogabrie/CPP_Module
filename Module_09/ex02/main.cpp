@@ -8,5 +8,13 @@ int main(int c, char ** v)
 	
 
 	a.printEndTime("aaaa");
+	try
+	{
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "ERROR " << e.what() << '\n';
+	}
+	
 	return (0);
 }
