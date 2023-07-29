@@ -6,12 +6,13 @@ BitcoinExchange::BitcoinExchange()
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 {
-	(void)other;
+	this->_data1 = other._data1;
 }
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
-	(void)other;
+	if (this != &other)
+		this->_data1 = other._data1;
 	return (*this);
 }
 
@@ -105,10 +106,6 @@ void BitcoinExchange::openfile(std::string file1)
 		myfile.close();
 		throw MyException("ERROR Open file " + file1 + "\n");
 	}
-	// for (std::map<std::string, std::string>::iterator it = this->_data1.begin(); it != this->_data1.end() ; it++)
-	// {
-	// 	std::cout << it->first << "--" << it->second << "\n";
-	// }
 }
 
 // -------->>  My Exception -------------->>
