@@ -1,5 +1,4 @@
 #include "PmergeMe.hpp"
-#include "PmergeMe.hpp"
 
 template <class T>
 PmergeMe<T>::PmergeMe(char **v, size_t c)
@@ -12,12 +11,6 @@ PmergeMe<T>::PmergeMe(char **v, size_t c)
 template <class T>
 PmergeMe<T>::PmergeMe(const PmergeMe &other)
 {
-}
-
-template <class T>
-PmergeMe &PmergeMe<T>::operator=(const PmergeMe &other)
-{
-	return (*this);
 }
 
 template <class T>
@@ -37,6 +30,11 @@ void PmergeMe<T>::printEndTime(std::string ptr)
 template <class T>
 void PmergeMe<T>::printData()
 {
+	for (typename T::iterator it = this->_data.begin(); it != this->_data.end(); it++)
+	{
+		std::cout << " " << *it;
+	}
+	
 }
 
 template <class T>
@@ -44,9 +42,21 @@ void PmergeMe<T>::sort()
 {
 }
 
-template class PmergeMe<int>;
-template class PmergeMe<list<int>>;
-template class PmergeMe<vector<int>>;
-template class PmergeMe<deque<int>>;
-template class PmergeMe<forward_list<int>>;
-template class PmergeMe<array<int8_t>>;
+template <class T>
+void PmergeMe<T>::addData(char **v, size_t c)
+{
+	int a;
+
+	for (size_t i = 0; i < (size_t)c ; i++)
+	{
+		a = std::stoi(v[i]);
+		if (a < 0)
+			throw MyException("");
+		this->_data.push_back(a);
+	}
+	
+}
+
+template class PmergeMe<std::list<int> >;
+template class PmergeMe<std::vector<int> >;
+template class PmergeMe<std::deque<int> >;
