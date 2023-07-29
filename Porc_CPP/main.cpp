@@ -12,6 +12,7 @@
 #include <array>
 #include <deque>
 #include <map>
+#include <stack>
 
 
 void aaa(const int &a)
@@ -27,17 +28,34 @@ void bbb(const int &a)
 
 int main()
 {
-	std::map<std::string,std::string> a {std::pair<std::string,std::string>("aaa","aaa"),
-										std::pair<std::string,std::string>("bbb","bbb"),
-										std::pair<std::string,std::string>("ccc","ccc")};
+	std::stack<int> a;
+	// a.push(5);
+	// a.push(10);
 	try
 	{
-		std::cout << a.at("bb") << std::endl;
+		for (size_t i = 0; i < 4; i++)
+		{
+			std::cout << a.top() << std::endl;
+			// a.pop();
+		}
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << "aaa" << e.what() << '\n';
 	}
+
+	
+	// std::map<std::string,std::string> a {std::pair<std::string,std::string>("aaa","aaa"),
+	// 									std::pair<std::string,std::string>("bbb","bbb"),
+	// 									std::pair<std::string,std::string>("ccc","ccc")};
+	// try
+	// {
+	// 	std::cout << a.at("bb") << std::endl;
+	// }
+	// catch(const std::exception& e)
+	// {
+	// 	std::cerr << e.what() << '\n';
+	// }
 	// std::vector<int> a {1,2,3,4,5,6,};
 	// std::vector<int> a(15,0);
 
