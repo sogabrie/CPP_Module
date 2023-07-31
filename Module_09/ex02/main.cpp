@@ -4,7 +4,7 @@ int main(int c, char ** v)
 {
 	try
 	{
-		PmergeMe<std::vector<int> > a(v,c);
+		PmergeMe<int > a(v,c);
 
 		for (size_t i = 0; i < 10000; i++);
 		
