@@ -15,13 +15,18 @@ class PmergeMe
 {
 private:
 	static std::vector<int>									_data_v;
-	static std::list<int>									_data_v;
-	static std::chrono::high_resolution_clock::time_point	_start;
-public:
-	PmergeMe(char ** v, size_t c);
+	static std::list<int>									_data_l;
+	static std::chrono::high_resolution_clock::time_point	_start_v;
+	static std::chrono::high_resolution_clock::time_point	_start_l;
+	static std::chrono::high_resolution_clock::time_point	_end_v;
+	static std::chrono::high_resolution_clock::time_point	_end_l;
+
+	PmergeMe();
 	PmergeMe(const PmergeMe & other);
 	PmergeMe & operator=(const PmergeMe & other);
 	~PmergeMe();
+
+public:
 
 	void	printEndTime(std::string ptr);
 	void	printData();
@@ -42,9 +47,3 @@ private:
 };
 
 #endif
-
-template <class T>
-PmergeMe<T> &PmergeMe<T>::operator=(const PmergeMe &other)
-{
-	return (*this);
-}
