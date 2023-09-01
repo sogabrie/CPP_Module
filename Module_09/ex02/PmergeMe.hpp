@@ -11,12 +11,12 @@
 #include <array>
 #include <chrono>
 
-template<class T>
 class PmergeMe
 {
 private:
-	T												_data;
-	std::chrono::high_resolution_clock::time_point	_start;
+	static std::vector<int>									_data_v;
+	static std::list<int>									_data_v;
+	static std::chrono::high_resolution_clock::time_point	_start;
 public:
 	PmergeMe(char ** v, size_t c);
 	PmergeMe(const PmergeMe & other);
