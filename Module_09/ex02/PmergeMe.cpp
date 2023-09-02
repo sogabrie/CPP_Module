@@ -35,6 +35,10 @@ void PmergeMe::run(char **v, size_t c)
 		std::cout << v[i] << " \n";
 	}
 	PmergeMe::addDataV(v, c);
+	for (size_t i = 0; i < PmergeMe::_data_v.size(); i++)
+	{
+		std::cout << PmergeMe::_data_v[i] << " ";
+	}
 	PmergeMe::sortV(PmergeMe::_data_v);
 	for (size_t i = 0; i < PmergeMe::_data_v.size(); i++)
 	{
