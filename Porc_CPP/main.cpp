@@ -28,21 +28,39 @@ void bbb(const int &a)
 
 int main()
 {
-	std::stack<int> a;
-	// a.push(5);
-	// a.push(10);
-	try
+	std::vector<int> a =  {1 , 2, 3 ,4,5,6,7,8};
+
+	// std::vector<int>::iterator it = a.begin();
+	// a.insert(it + 0, 6);
+
+	// std::cout << *(a.erase(a.begin() + 2)) << std::endl;
+
+	// for (;false;++it)
+	// {
+	// 	/* code */
+	// }
+	// std::cout << *it << "\n";
+
+	for (auto c : a)
 	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			std::cout << a.top() << std::endl;
-			// a.pop();
-		}
+		std::cout << c << std::endl;
 	}
-	catch(const std::exception& e)
-	{
-		std::cerr << "aaa" << e.what() << '\n';
-	}
+	
+	// std::stack<int> a;
+	// // a.push(5);
+	// // a.push(10);
+	// try
+	// {
+	// 	for (size_t i = 0; i < 4; i++)
+	// 	{
+	// 		std::cout << a.top() << std::endl;
+	// 		// a.pop();
+	// 	}
+	// }
+	// catch(const std::exception& e)
+	// {
+	// 	std::cerr << "aaa" << e.what() << '\n';
+	// }
 
 	
 	// std::map<std::string,std::string> a {std::pair<std::string,std::string>("aaa","aaa"),

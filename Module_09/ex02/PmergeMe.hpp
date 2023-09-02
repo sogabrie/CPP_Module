@@ -10,6 +10,7 @@
 #include <forward_list>
 #include <array>
 #include <chrono>
+#include <iterator> 
 
 class PmergeMe
 {
@@ -31,7 +32,7 @@ private:
 	static void addDataV(char ** v, size_t c);
 	static void addDataL(char ** v, size_t c);
 
-	static void sortL();
+	// static void sortL();
 	static void sortV(std::vector<int> &mas);
 
 public:
