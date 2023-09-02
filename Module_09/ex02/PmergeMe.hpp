@@ -26,14 +26,19 @@ private:
 	PmergeMe & operator=(const PmergeMe & other);
 	~PmergeMe();
 
+	static void printEndTimeV();
+	static void printEndTimeL();
+	static void addDataV(char ** v, size_t c);
+	static void addDataL(char ** v, size_t c);
+
+	static void sortL();
+	static void sortV(std::vector<int> &mas);
+
 public:
 
-	void	printEndTime(std::string ptr);
-	void	printData();
-	void	sort();
+	static void run(char **v, size_t c);
 
 private:
-	void addData(char ** v, size_t c);
 
 	class MyException : public std::exception
 	{
