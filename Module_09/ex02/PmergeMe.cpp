@@ -28,23 +28,18 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 
 void PmergeMe::run(char **v, size_t c)
 {
-	(void)v;
-	(void)c;
-	for (size_t i = 0; i < c; i++)
-	{
-		std::cout << v[i] << " \n";
-	}
 	PmergeMe::addDataV(v, c);
 	for (size_t i = 0; i < PmergeMe::_data_v.size(); i++)
 	{
 		std::cout << PmergeMe::_data_v[i] << " ";
 	}
+	std::cout << "\n";
 	PmergeMe::sortV(PmergeMe::_data_v);
 	for (size_t i = 0; i < PmergeMe::_data_v.size(); i++)
 	{
 		std::cout << PmergeMe::_data_v[i] << " ";
 	}
-	
+	std::cout << "\n";
 }
 
 
@@ -106,10 +101,8 @@ static void sortInsertV(std::vector<int> &mas)
 
 static void sortV2(std::vector<int> &smol, std::vector<int> &larg)
 {
-	(void)smol;
-	(void)larg;
 	size_t number = 0;
-	for (; !smol.size() ;)
+	for (; smol.size() ;)
 	{
 		number +=1;
 		number *=2;
@@ -117,7 +110,7 @@ static void sortV2(std::vector<int> &smol, std::vector<int> &larg)
 		if (number >= smol.size())
 			number = (int)smol.size() - 1;
 		std::vector<int>::iterator it = larg.begin();
-		for ( ; it != larg.end() && smol[number] < *it; ++it);
+		for ( ; it != larg.end() && smol[number] > *it; ++it);
 		larg.insert(it, smol[number]);
 		it = smol.begin();
 		std::advance(it ,number);
@@ -158,72 +151,70 @@ void PmergeMe::sortV(std::vector<int> &mas)
 	mas = larg;
 }
 
-// static void sortInsertL(std::list<int> &mas)
-// {
-// 	for (size_t i = 0; i + 1 < mas.size();)
-// 	{
-// 		if (mas[i] > mas[i + 1])
-// 		{
-// 			int t = mas[i];
-// 			mas[i] = mas[i + 1];
-// 			mas[i + 1] = t;
-// 			i = 0;
-// 		}
-// 		else
-// 			++i;
-// 	}
-// }
+static void sortInsertL(std::vector<int> &mas)
+{
+	for (size_t i = 0; i + 1 < mas.size();)
+	{
+		if (mas[i] > mas[i + 1])
+		{
+			int t = mas[i];
+			mas[i] = mas[i + 1];
+			mas[i + 1] = t;
+			i = 0;
+		}
+		else
+			++i;
+	}
+}
 
-// static void sortL2(std::list<int> &smol, std::list<int> &larg)
-// {
-// 	(void)smol;
-// 	(void)larg;
-// 	int number = 0;
-// 	for (; !smol.size() ;)
-// 	{
-// 		number +=1;
-// 		number *=2;
-// 		number -= 1;
-// 		if (number >= smol.size())
-// 			number = (int)smol.size() - 1;
-// 		std::vector<int>::iterator it = larg.begin();
-// 		for ( ; it != larg.end() && smol[number] < *it; ++it);
-// 		larg.insert(it, smol[number]);
-// 		it = smol.begin();
-// 		std::advance(smol.begin() ,number);
-// 		smol.erase(it);
-// 	}
+static void sortV2(std::vector<int> &smol, std::vector<int> &larg)
+{
+	size_t number = 0;
+	for (; smol.size() ;)
+	{
+		number +=1;
+		number *=2;
+		number -= 1;
+		if (number >= smol.size())
+			number = (int)smol.size() - 1;
+		std::vector<int>::iterator it = larg.begin();
+		for ( ; it != larg.end() && smol[number] > *it; ++it);
+		larg.insert(it, smol[number]);
+		it = smol.begin();
+		std::advance(it ,number);
+		smol.erase(it);
+	}
 	
-// }
+}
 
-// void PmergeMe::sortL(std::list<int> &mas)
-// {
-// 	std::std::list<int> smol, larg;
+void PmergeMe::sortV(std::vector<int> &mas)
+{
+	std::vector<int> smol, larg;
 
-// 	if (mas.size() == 2 || mas.size() == 3)
-// 	{
-// 		sortInsert(mas);
-// 		return;
-// 	}
-// 	size_t i = 0;
-// 	for (; i < mas.size() && i + 1 < mas.size(); i += 2)
-// 	{
-// 		if (mas[i] < mas[i + 1])
-// 		{
-// 			smol.push_back(mas[i]);
-// 			larg.push_back(mas[i + 1]);
-// 		}
-// 		else
-// 		{
-// 			smol.push_back(mas[i + 1]);
-// 			larg.push_back(mas[i]);
-// 		}
-// 	}
-// 	if (i < mas.size())
-// 	{
-// 		smol.push_back(mas[i]);
-// 	}
-// 	PmergeMe::sortL(larg);
-// 	sortV2(smol, larg);
-// 	mas = larg;
-// }
+	if (mas.size() == 2 || mas.size() == 3)
+	{
+		sortInsertV(mas);
+		return;
+	}
+	size_t i = 0;
+	for (; i < mas.size() && i + 1 < mas.size(); i += 2)
+	{
+		if (mas[i] < mas[i + 1])
+		{
+			smol.push_back(mas[i]);
+			larg.push_back(mas[i + 1]);
+		}
+		else
+		{
+			smol.push_back(mas[i + 1]);
+			larg.push_back(mas[i]);
+		}
+	}
+	if (i < mas.size())
+	{
+		smol.push_back(mas[i]);
+	}
+	PmergeMe::sortV(larg);
+	sortV2(smol, larg);
+	mas = larg;
+}
