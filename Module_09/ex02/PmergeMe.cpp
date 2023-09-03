@@ -28,33 +28,49 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 
 void PmergeMe::run(char **v, size_t c)
 {
+	if (c < 2)
+		throw MyException("Argument");
+
 	PmergeMe::addDataV(v, c);
+	PmergeMe::addDataL(v, c);
+
+	std::cout << "Before: ";  
 	for (size_t i = 0; i < PmergeMe::_data_v.size(); i++)
 	{
 		std::cout << PmergeMe::_data_v[i] << " ";
 	}
 	std::cout << "\n";
+
+	PmergeMe::_start_v = std::chrono::high_resolution_clock::now();
 	PmergeMe::sortV(PmergeMe::_data_v);
+	PmergeMe::_end_v = std::chrono::high_resolution_clock::now();
+
+	PmergeMe::_start_l = std::chrono::high_resolution_clock::now();
+	PmergeMe::sortL(PmergeMe::_data_l);
+	PmergeMe::_end_l = std::chrono::high_resolution_clock::now();
+
+	std::cout << "After: "; 
 	for (size_t i = 0; i < PmergeMe::_data_v.size(); i++)
 	{
 		std::cout << PmergeMe::_data_v[i] << " ";
 	}
 	std::cout << "\n";
+	PmergeMe::printEndTimeV(c);
+	PmergeMe::printEndTimeL(c);
 }
 
 
-void PmergeMe::printEndTimeV()
+void PmergeMe::printEndTimeV(int a)
 {
-	PmergeMe::_end_v = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> dur = PmergeMe::_end_v - PmergeMe::_start_v;
-	std::cout << "Time to process a range of 3000 elements with std::Vector : " << dur.count() << "\n";
+	std::cout << "Time to process a range of " << a <<  " elements with std::Vector : " << (dur.count()) * 1000 << "\n";
 }
 
-void PmergeMe::printEndTimeL()
+void PmergeMe::printEndTimeL(int a)
 {
 	PmergeMe::_end_l = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> dur = PmergeMe::_end_l - PmergeMe::_start_l;
-	std::cout << "Time to process a range of 3000 elements with std::List : " << dur.count() << "\n";
+	std::cout << "Time to process a range of "<< a << " elements with std::List : " << (dur.count()) * 1000  << "\n";
 }
 
 void PmergeMe::addDataV(char **v, size_t c)
@@ -64,8 +80,8 @@ void PmergeMe::addDataV(char **v, size_t c)
 	for (size_t i = 0; i < (size_t)c ; i++)
 	{
 		a = std::stoi(v[i]);
-		if (a < 0)
-			throw MyException("Error");
+		if (a <= 0)
+			throw MyException("Argument");
 		PmergeMe::_data_v.push_back(a);
 	}
 }
@@ -151,23 +167,32 @@ void PmergeMe::sortV(std::vector<int> &mas)
 	mas = larg;
 }
 
-static void sortInsertL(std::vector<int> &mas)
+static void sortInsertL(std::list<int> &mas)
 {
-	for (size_t i = 0; i + 1 < mas.size();)
+	std::list<int>::iterator i = mas.begin();
+	std::list<int>::iterator i2 = i;
+	std::advance(i2, 1);
+	for (; i2 != mas.end() && i != mas.end();)
 	{
-		if (mas[i] > mas[i + 1])
+		if (*i > *i2)
 		{
-			int t = mas[i];
-			mas[i] = mas[i + 1];
-			mas[i + 1] = t;
-			i = 0;
+			int t = *i;
+			*i = *i2;
+			*i2 = t;
+			i = mas.begin();
+			i2 = i;
+			std::advance(i2, 1);
 		}
 		else
-			++i;
+		{
+			std::advance(i, 1);
+			i2 = i;
+			std::advance(i2, 1);
+		}
 	}
 }
 
-static void sortV2(std::vector<int> &smol, std::vector<int> &larg)
+static void sortL2(std::list<int> &smol, std::list<int> &larg)
 {
 	size_t number = 0;
 	for (; smol.size() ;)
@@ -177,9 +202,11 @@ static void sortV2(std::vector<int> &smol, std::vector<int> &larg)
 		number -= 1;
 		if (number >= smol.size())
 			number = (int)smol.size() - 1;
-		std::vector<int>::iterator it = larg.begin();
-		for ( ; it != larg.end() && smol[number] > *it; ++it);
-		larg.insert(it, smol[number]);
+		std::list<int>::iterator it = larg.begin();
+		std::list<int>::iterator it_smol = smol.begin();
+		std::advance(it_smol, number);
+		for ( ; it != larg.end() && *it_smol > *it; ++it);
+		larg.insert(it, *it_smol);
 		it = smol.begin();
 		std::advance(it ,number);
 		smol.erase(it);
@@ -187,34 +214,35 @@ static void sortV2(std::vector<int> &smol, std::vector<int> &larg)
 	
 }
 
-void PmergeMe::sortV(std::vector<int> &mas)
+void PmergeMe::sortL(std::list<int> &mas)
 {
-	std::vector<int> smol, larg;
-
+	std::list<int> smol, larg;
 	if (mas.size() == 2 || mas.size() == 3)
 	{
-		sortInsertV(mas);
+		sortInsertL(mas);
 		return;
 	}
-	size_t i = 0;
-	for (; i < mas.size() && i + 1 < mas.size(); i += 2)
+	std::list<int>::iterator i = mas.begin();
+	std::list<int>::iterator i2 = i;
+	std::advance(i2 , 1);
+	for (; i != mas.end() && i2 != mas.end(); std::advance(i , 2), i2 = i, std::advance(i2 , 1))
 	{
-		if (mas[i] < mas[i + 1])
+		if (*i < *i2)
 		{
-			smol.push_back(mas[i]);
-			larg.push_back(mas[i + 1]);
+			smol.push_back(*i);
+			larg.push_back(*i2);
 		}
 		else
 		{
-			smol.push_back(mas[i + 1]);
-			larg.push_back(mas[i]);
+			smol.push_back(*i2);
+			larg.push_back(*i);
 		}
 	}
-	if (i < mas.size())
+	if (i != mas.end())
 	{
-		smol.push_back(mas[i]);
+		smol.push_back(*i);
 	}
-	PmergeMe::sortV(larg);
-	sortV2(smol, larg);
+	PmergeMe::sortL(larg);
+	sortL2(smol, larg);
 	mas = larg;
 }

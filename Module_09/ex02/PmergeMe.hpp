@@ -27,12 +27,12 @@ private:
 	PmergeMe & operator=(const PmergeMe & other);
 	~PmergeMe();
 
-	static void printEndTimeV();
-	static void printEndTimeL();
+	static void printEndTimeV(int a);
+	static void printEndTimeL(int a);
 	static void addDataV(char ** v, size_t c);
 	static void addDataL(char ** v, size_t c);
 
-	// static void sortL();
+	static void sortL(std::list<int> &mas);
 	static void sortV(std::vector<int> &mas);
 
 public:

@@ -45,12 +45,15 @@ void RPN::rpn(std::string a)
 		else
 			throw MyException("Error\n");
 	}
-	std::cout << this->_my_stack.top() << "\n";
+	if (this->_my_stack.size() != 1)
+		throw MyException("Syntexs Error\n");
+	else
+		std::cout << this->_my_stack.top() << "\n";
 }
 
 void RPN::Add()
 {
-	int a = this->_my_stack.top();
+	double a = this->_my_stack.top();
 	this->_my_stack.pop();
 	a = this->_my_stack.top() + a;
 	this->_my_stack.pop();
@@ -59,7 +62,7 @@ void RPN::Add()
 
 void RPN::Subtract()
 {
-	int a = this->_my_stack.top();
+	double a = this->_my_stack.top();
 	this->_my_stack.pop();
 	a = this->_my_stack.top() - a;
 	this->_my_stack.pop();
@@ -68,7 +71,7 @@ void RPN::Subtract()
 
 void RPN::Multiple()
 {
-	int a = this->_my_stack.top();
+	double a = this->_my_stack.top();
 	this->_my_stack.pop();
 	a = this->_my_stack.top() * a;
 	this->_my_stack.pop();
@@ -77,7 +80,7 @@ void RPN::Multiple()
 
 void RPN::Devide()
 {
-	int a = this->_my_stack.top();
+	double a = this->_my_stack.top();
 	this->_my_stack.pop();
 	if (!a)
 		throw MyException("Error Devide zero\n");
