@@ -54,25 +54,28 @@ void BitcoinExchange::btc(std::string file1, std::string file2)
 					std::cout << "Error: too large a number." << std::endl;
 				else
 				{
+					std::string data = ptr2.assign(ptr,0,pos);
+					std::map<std::string, std::string>::iterator it, it2;
+					
 					try
 					{
 						value *= stod(this->_data1.at(ptr2.assign(ptr,0,pos)));
 					}
 					catch(...)
 					{
-						std::map<std::string, std::string>::iterator it, it2;
 						for (it = it2 = this->_data1.begin(); it != this->_data1.end(); it2 = it++)
 						{
-							if (ptr2.assign(ptr,0,pos) < it->first)
+							if (data < it->first)
 							{
 								value *= stod(it2->second);
 								break;
 							}
 						}
-						if (it == this->_data1.end())
-							value *= stod(it2->second);
 					}
-					std::cout << ptr2.assign(ptr,0,pos) << " => " << ptr2.assign(ptr, pos + 1 , ptr.size() - (pos + 1)) << " = " << value << std::endl;
+					if (it == this->_data1.end())
+						std::cout << "Error: No data." << std::endl;
+					else
+						std::cout << data << " => " << ptr2.assign(ptr, pos + 1 , ptr.size() - (pos + 1)) << " = " << value << std::endl;
 					
 				}
 			}
